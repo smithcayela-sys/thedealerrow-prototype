@@ -601,13 +601,16 @@ table.simple tr:last-child td { border-bottom: none; }
 .pbar { height: 8px; border-radius: 5px; background: var(--gray-100); overflow: hidden; }
 .pbar > span { display: block; height: 100%; background: var(--green-600); border-radius: 5px; }
 
-/* map placeholder */
+/* coverage map */
 .map-box {
   border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border);
-  position: relative; background: linear-gradient(135deg, #e8f3ec, #d8ecdf);
-  min-height: 220px;
+  position: relative; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px;
 }
-.map-box svg { width: 100%; height: 100%; display:block; }
+.map-box svg { width: 100%; height: auto; display:block; }
+.us-map-svg .state { fill: var(--green-100); stroke: #fff; stroke-width: 1.1; transition: fill .15s ease; }
+.us-map-svg .state.is-covered { fill: var(--green-500); }
 
 /* utility */
 .flex { display: flex; }
