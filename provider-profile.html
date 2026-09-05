@@ -121,6 +121,9 @@
         <div class="quote-author">${q.name} &middot; ${q.role}, ${q.dealer} &middot; ${q.state}</div>
       </div>`).join("");
 
+    const dealerReportedStates = drDealerReportedStates(p);
+    const dealerReportedText = dealerReportedStates.length ? dealerReportedStates.join(", ") : "No dealer-reported markets yet";
+
     root.innerHTML = `
       <div class="profile-hero">
         <div class="flex gap-16" style="align-items:flex-start;flex-wrap:wrap;">
@@ -163,7 +166,14 @@
             <h4 style="margin-top:0;">Quick Facts</h4>
             <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;" class="text-sm">
               <div><strong>Location:</strong> ${p.city}, ${p.state}</div>
-              <div><strong>Coverage:</strong> ${p.servesText}</div>
+              <div>
+                <strong>Provider-Claimed Coverage:</strong> ${p.servesText}
+                <div class="text-xs text-muted" style="margin-top:2px;">As reported by the provider</div>
+              </div>
+              <div>
+                <strong>Dealer-Reported Markets:</strong> ${dealerReportedText}
+                <div class="text-xs text-muted" style="margin-top:2px;">States where dealership professionals report actually using this provider, based on the recommendations below</div>
+              </div>
               <div><strong>Category:</strong> ${p.category}</div>
               <div><strong>Business Verified:</strong> ${p.verified ? "Yes" : "Not yet verified"}</div>
             </div>
