@@ -154,7 +154,7 @@
       </div>
 
       <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;" id="resultsList"></div>
-      <p class="text-sm text-muted" id="noResultsNote" style="display:none;margin-top:14px;">No exact matches for that search, so here's the full nationwide list instead — try a broader category or radius.</p>
+      <p class="text-sm text-muted" id="noResultsNote" style="display:none;margin-top:14px;">No providers currently match that search. Try a different category, a nearby city or state, or clear a filter to see all providers.</p>
     </div>
 
     <!-- Right rail -->
@@ -259,33 +259,9 @@
     "Vehicle Operations": ["Vehicle Operations"],
   };
 
-  const DR_STATE_NAMES = {
-    AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
-    CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
-    HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
-    KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
-    MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri",
-    MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
-    NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
-    OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
-    SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont",
-    VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
-    DC: "District of Columbia",
-  };
-
-  function drProviderMatchesLocation(p, locationQuery) {
-    if (!locationQuery) return true;
-    const q = locationQuery.trim().toLowerCase();
-    if (!q) return true;
-    if (p.state === "US") return true; // nationwide providers always match a location search
-    const stateFullName = (DR_STATE_NAMES[p.state] || "").toLowerCase();
-    return (
-      (p.city + ", " + p.state).toLowerCase().includes(q) ||
-      p.state.toLowerCase() === q ||
-      p.city.toLowerCase().includes(q) ||
-      (stateFullName && (stateFullName === q || stateFullName.includes(q)))
-    );
-  }
+  /* Location matching (drProviderMatchesLocation, drResolveLocationState, DR_STATE_NAMES, etc.)
+     now lives in js/app.js so Find and the Provider Profile page share one source of truth for
+     a provider's claimed service area, rather than each page guessing from headquarters alone. */
 
   function drRenderResultCard(p) {
     const card = document.createElement("div");
@@ -317,17 +293,11 @@
     const noResultsNote = document.getElementById("noResultsNote");
     if (!list) return;
 
-    let filtered = DR_PROVIDERS.filter((p) => {
+    const filtered = DR_PROVIDERS.filter((p) => {
       const svcMatch = !service || p.category === service;
       const locMatch = drProviderMatchesLocation(p, location);
       return svcMatch && locMatch;
     });
-
-    let usedFallback = false;
-    if (filtered.length === 0) {
-      filtered = DR_PROVIDERS.slice();
-      usedFallback = true;
-    }
 
     // sort by "Would use again" percentage, highest first (matches the default "Recommended" sort)
     filtered.sort((a, b) => b.pct - a.pct);
@@ -336,7 +306,7 @@
     filtered.forEach((p) => list.appendChild(drRenderResultCard(p)));
 
     let headingText;
-    if (usedFallback || (!service && !location)) {
+    if (!service && !location) {
       headingText = "All providers";
     } else if (service && location) {
       headingText = `${service} near ${location}`;
@@ -346,8 +316,15 @@
       headingText = `All providers near ${location}`;
     }
     if (heading) heading.textContent = headingText;
-    if (countText) countText.textContent = `Showing ${filtered.length} provider${filtered.length === 1 ? "" : "s"}${location && !usedFallback ? " serving this area" : ""}`;
-    if (noResultsNote) noResultsNote.style.display = usedFallback && (service || location) ? "" : "none";
+
+    if (filtered.length === 0) {
+      // Weak/no-match state: show nothing rather than implying unrelated providers serve this market.
+      if (countText) countText.textContent = "No providers currently match this search";
+      if (noResultsNote) noResultsNote.style.display = "";
+    } else {
+      if (countText) countText.textContent = `Showing ${filtered.length} provider${filtered.length === 1 ? "" : "s"}${location ? " serving this area" : ""}`;
+      if (noResultsNote) noResultsNote.style.display = "none";
+    }
 
     initSaveButtons(); // (re)wire Save buttons on the freshly-rendered cards
   }
