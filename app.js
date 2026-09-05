@@ -1,0 +1,198 @@
+/* ==========================================================================
+   THE DEALER ROW — shared app behavior + mock data
+   This is a front-end prototype: all data below is mock/sample data that
+   lives in memory only (no backend). Wire this up to real APIs when ready.
+   ========================================================================== */
+
+/* ---------------- Mock data ---------------- */
+const DR_PROVIDERS = [
+  { id: "midwest-recovery", name: "Midwest Recovery Group", initials: "MRG", city: "Omaha", state: "NE", radius: 100, servesText: "Serves NE, IA (100-mile radius)", pct: 96, recs: 24, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral" },
+  { id: "platinum-recovery", name: "Platinum Recovery", initials: "PR", city: "Lincoln", state: "NE", radius: 150, servesText: "Serves NE, IA (150-mile radius)", pct: 94, recs: 18, services: ["Repossession","Transport","Lockout/Keys","Storage"], category: "Recovery & Collateral" },
+  { id: "great-plains-recovery", name: "Great Plains Recovery", initials: "GPR", city: "Fremont", state: "NE", radius: 100, servesText: "Serves NE (100-mile radius)", pct: 92, recs: 11, services: ["Repossession","Voluntary Surrender","Transport","Inspections"], category: "Recovery & Collateral" },
+  { id: "capital-asset-recovery", name: "Capital Asset Recovery", initials: "CAR", city: "Council Bluffs", state: "IA", radius: 100, servesText: "Serves NE, IA (100-mile radius)", pct: 90, recs: 9, services: ["Repossession","Transport","Storage","Skip Tracing"], category: "Recovery & Collateral" },
+  { id: "steadfast-recovery", name: "Steadfast Recovery", initials: "SR", city: "Omaha", state: "NE", radius: 200, servesText: "Serves NE, IA, SD (200-mile radius)", pct: 88, recs: 7, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral" },
+  { id: "lone-star-recovery", name: "Lone Star Recovery", initials: "LSR", city: "Dallas", state: "TX", radius: 120, servesText: "Serves TX (120-mile radius)", pct: 91, recs: 15, services: ["Repossession","Lockout/Keys","Transport"], category: "Recovery & Collateral" },
+  { id: "texas-title-solutions", name: "Texas Title Solutions", initials: "TTS", city: "Austin", state: "TX", radius: 150, servesText: "Serves TX (150-mile radius)", pct: 95, recs: 20, services: ["Titling","Temp Tags","DMV Support"], category: "Titling & Administration" },
+  { id: "rapid-auto-transport", name: "Rapid Auto Transport", initials: "RAT", city: "Nationwide", state: "US", radius: 0, servesText: "Nationwide coverage", pct: 93, recs: 22, services: ["Transport","Auction Runs","Open/Enclosed"], category: "Vehicle Operations" },
+];
+
+const DR_QUESTIONS = [
+  { id: "recovery-grand-island", title: "Recovery recommendation needed near Grand Island, NE", topic: "Recovery & Collateral", location: "Nebraska", author: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", time: "2 hours ago", views: 324, answers: 7, recs: 3,
+    body: "Texas dealer here. We have a vehicle located near Grand Island and our normal recovery network doesn't cover the area. Has anyone personally used an agency there that you'd recommend?" },
+  { id: "florida-titling", title: "Title processing recommendations in Florida?", topic: "Titling & DMV", location: "Florida", author: "Kristen L.", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", time: "5 hours ago", views: 210, answers: 12, recs: 5,
+    body: "Looking for a reliable third-party titling company in Florida. We have some out-of-state deals and need someone we can trust. Any recommendations?" },
+  { id: "bankruptcy-attorney-houston", title: "Preferred bankruptcy attorney in Houston, TX", topic: "Legal & Compliance", location: "Texas", author: "Derek R.", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "8 hours ago", views: 188, answers: 9, recs: 4,
+    body: "We're seeing an increase in Chapter 7 and 13 filings and need a solid attorney who understands buy here pay here. Who do you use and why?" },
+  { id: "gps-tracking", title: "Best GPS tracking devices for collateral?", topic: "Dealer Technology", location: "Nationwide", author: "Melissa T.", role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "1 day ago", views: 402, answers: 15, recs: 6,
+    body: "Looking for feedback on GPS devices. What are you using, what's working well, and what should we stay away from?" },
+  { id: "transport-tx-az", title: "Transport company for auction runs (TX to AZ)", topic: "Recovery & Collateral", location: "Texas", author: "Chris B.", role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", time: "1 day ago", views: 156, answers: 11, recs: 4,
+    body: "Need a reliable transport company for 8–10 units heading to auction in Arizona. Who do you use and what has your experience been?" },
+];
+
+const DR_THREAD_ANSWERS = [
+  { name: "Kristen L.", initials: "KM", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", time: "3 hours ago",
+    body: "We've used Midwest Recovery several times for units in the Grand Island area. They're reliable, communicate well, and usually have quick turnaround times. No issues on our end.",
+    provider: { name: "Midwest Recovery Group", initials: "MRG", area: "Omaha, NE", servesText: "Serves NE, IA (including Grand Island)", pct: 96 }, helpful: 12 },
+  { name: "Derek R.", initials: "DR", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "4 hours ago",
+    body: "Great Plains Recovery covers Grand Island and the surrounding areas. We've used them twice and had a good experience both times. Professional and kept us updated the whole time.",
+    provider: { name: "Great Plains Recovery", initials: "GPR", area: "Fremont, NE", servesText: "Serves NE (including Grand Island)", pct: 92 }, helpful: 8 },
+  { name: "Melissa T.", initials: "MT", role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "5 hours ago",
+    body: "Grand Island can be a little tricky depending on how far outside of town the unit is. I'd verify mileage before assigning. Some Omaha agencies charge extended coverage if it's outside their standard radius. We usually confirm upfront to avoid surprises.",
+    provider: null, helpful: 6 },
+];
+
+const DR_INVITATIONS = [
+  { name: "Midwest Recovery Group", initials: "MRG", type: "Service Provider", email: "info@midwestrecovery.com", status: "Joined", date: "Aug 28, 2026" },
+  { name: "Jessica R.", initials: "JR", type: "Dealership Professional", email: "jessica@dealership.com", status: "Pending", date: "Sep 1, 2026" },
+  { name: "Premier Dealer Law", initials: "P", type: "Service Provider", email: "info@premierlaw.com", status: "Pending", date: "Aug 30, 2026" },
+  { name: "Marcus T.", initials: "MT", type: "Industry Professional", email: "marcus@autoconsulting.com", status: "Declined", date: "Aug 25, 2026" },
+  { name: "Lone Star Towing", initials: "LST", type: "Service Provider", email: "contact@lonestartowing.com", status: "Joined", date: "Aug 20, 2026" },
+];
+
+/* ---------------- Icon helper (feather-style inline svgs) ---------------- */
+const DR_ICONS = {
+  chevronDown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+  bell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>',
+};
+
+/* ---------------- Boot ---------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  initMobileMenu();
+  initChoiceCards();
+  initToggleCards();
+  initStarRatings();
+  initCharCounters();
+  markActiveNav();
+  initComingSoon();
+  initAvatarMenu();
+});
+
+/* ---------------- Coming soon toast (for modules outside current build scope) ---------------- */
+function drToast(message) {
+  let toast = document.querySelector(".dr-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.className = "dr-toast";
+    toast.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg><span></span>`;
+    document.body.appendChild(toast);
+  }
+  toast.querySelector("span").textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+function initComingSoon() {
+  document.querySelectorAll("[data-soon]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      const label = el.dataset.soon && el.dataset.soon !== "true" ? el.dataset.soon : "This feature";
+      drToast(`${label} is coming soon.`);
+    });
+  });
+}
+
+function initAvatarMenu() {
+  const btn = document.querySelector("[data-avatar-toggle]");
+  const menu = document.querySelector(".avatar-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("open");
+  });
+  document.addEventListener("click", () => menu.classList.remove("open"));
+  menu.addEventListener("click", (e) => e.stopPropagation());
+}
+
+function initMobileMenu() {
+  const btn = document.querySelector("[data-menu-toggle]");
+  const sidebar = document.querySelector(".sidebar");
+  const backdrop = document.querySelector(".mobile-menu-backdrop");
+  if (!btn) return;
+  const close = () => { sidebar && sidebar.classList.remove("open"); backdrop && backdrop.classList.remove("open"); };
+  btn.addEventListener("click", () => {
+    if (sidebar) { sidebar.classList.toggle("open"); }
+    if (backdrop) { backdrop.classList.toggle("open"); }
+    else {
+      // no sidebar on this page (e.g. public pages) -> toggle a simple dropdown nav if present
+      const dd = document.querySelector("[data-mobile-nav]");
+      if (dd) dd.classList.toggle("open");
+    }
+  });
+  if (backdrop) backdrop.addEventListener("click", close);
+}
+
+function initChoiceCards() {
+  document.querySelectorAll("[data-choice-group]").forEach((group) => {
+    const cards = group.querySelectorAll(".choice-card");
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        cards.forEach((c) => c.classList.remove("selected"));
+        card.classList.add("selected");
+        const evt = new CustomEvent("choiceChange", { detail: card.dataset.value });
+        group.dispatchEvent(evt);
+      });
+    });
+  });
+}
+
+function initToggleCards() {
+  document.querySelectorAll("[data-toggle-group]").forEach((group) => {
+    const cards = group.querySelectorAll(".toggle-card");
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        cards.forEach((c) => c.classList.remove("selected"));
+        card.classList.add("selected");
+      });
+    });
+  });
+}
+
+function initStarRatings() {
+  document.querySelectorAll("[data-star-rating]").forEach((wrap) => {
+    const stars = wrap.querySelectorAll("svg");
+    let current = parseInt(wrap.dataset.value || "4", 10);
+    const paint = (n) => stars.forEach((s, i) => s.classList.toggle("on", i < n));
+    paint(current);
+    stars.forEach((s, i) => {
+      s.addEventListener("click", () => { current = i + 1; wrap.dataset.value = current; paint(current); });
+      s.addEventListener("mouseenter", () => paint(i + 1));
+    });
+    wrap.addEventListener("mouseleave", () => paint(current));
+  });
+}
+
+function initCharCounters() {
+  document.querySelectorAll("[data-char-count]").forEach((ta) => {
+    const max = parseInt(ta.dataset.charCount, 10);
+    const counter = document.querySelector(`[data-char-count-for="${ta.id}"]`);
+    if (!counter) return;
+    const update = () => { counter.textContent = `${ta.value.length}/${max}`; };
+    ta.addEventListener("input", update);
+    update();
+  });
+}
+
+function markActiveNav() {
+  const page = document.body.dataset.page;
+  if (!page) return;
+  document.querySelectorAll(`.main-nav a[data-page], .sidebar-nav a[data-page]`).forEach((a) => {
+    if (a.dataset.page === page) a.classList.add("active");
+  });
+}
+
+/* Simple client-side filter used on Find + My Row + Ask The Row (demo only) */
+function drFilterList(inputSelector, itemSelector, textAttr) {
+  const input = document.querySelector(inputSelector);
+  if (!input) return;
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    document.querySelectorAll(itemSelector).forEach((el) => {
+      const text = (textAttr ? el.dataset[textAttr] : el.textContent).toLowerCase();
+      el.style.display = text.includes(q) ? "" : "none";
+    });
+  });
+}
