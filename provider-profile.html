@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provider Profile | The Dealer Row</title>
+<meta name="description" content="Provider profile on The Dealer Row — verification status, dealer recommendations, and would-use-again data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="find">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="find.html" class="active" data-page="find">Find</a>
+      <a href="#" class="nav-soon" data-soon="Ask The Row" data-page="ask">Ask The Row<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search" onclick="window.location.href='find.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <a href="join.html" class="btn btn-outline btn-sm">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
+      <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-panel" data-mobile-nav>
+  <div class="container">
+    <a href="find.html">Find</a>
+    <a href="#" data-soon="Ask The Row">Ask The Row</a>
+    <a href="#" data-soon="Communities">Communities</a>
+    <a href="#" data-soon="Resources">Resources</a>
+    <a href="#" data-soon="About">About</a>
+    <div class="mnp-actions">
+      <a href="join.html" class="btn btn-outline-light btn-sm w-full">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm w-full">Join The Row</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-top:26px;padding-bottom:70px;max-width:1100px;">
+  <a href="find.html" class="text-sm" style="color:var(--green-600);font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    Back to Search Results
+  </a>
+
+  <div id="profileContent" style="margin-top:18px;">
+    <!-- populated by JS below -->
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-badges" style="padding-bottom:26px;">
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg> Real Connections</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Trusted Solutions</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg> A Stronger Industry</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Nationwide Together</div>
+    </div>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:12px;">
+          <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+          <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span></div>
+        </a>
+        <p style="font-size:13px;max-width:220px;">Where the automotive industry connects. Find. Ask. Recommend. Connect.</p>
+      </div>
+      <div>
+        <h4>For Dealers</h4>
+        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="#" data-soon="Ask The Row">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
+      </div>
+      <div>
+        <h4>For Providers</h4>
+        <ul><li><a href="join.html">Claim Your Profile</a></li><li><a href="join.html">Join as a Provider</a></li><li><a href="#">Vendor Guidelines</a></li><li><a href="#">Get Recommended</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Community Guidelines</a></li><li><a href="#">Help Center</a></li><li><a href="#">Recommendation Policy</a></li><li><a href="find.html">Search Categories</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 The Dealer Row. All rights reserved.</span>
+      <span style="display:flex;gap:18px;"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Community Guidelines</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  function drRenderProfile() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const p = id ? drProviderById(id) : null;
+    const root = document.getElementById("profileContent");
+
+    if (!p) {
+      root.innerHTML = `
+        <div class="card card-pad" style="text-align:center;padding:50px 24px;">
+          <h2>Provider not found</h2>
+          <p class="text-sm" style="max-width:420px;margin:8px auto 18px;">We couldn't find a provider matching that link. It may have been mistyped, or the provider is no longer listed.</p>
+          <a href="find.html" class="btn btn-primary">Back to Search Results</a>
+        </div>`;
+      return;
+    }
+
+    const quotesHtml = (p.quotes || []).map((q) => `
+      <div class="quote-card">
+        <p>&ldquo;${q.text}&rdquo;</p>
+        <div class="quote-author">${q.name} &middot; ${q.role}, ${q.dealer} &middot; ${q.state}</div>
+      </div>`).join("");
+
+    root.innerHTML = `
+      <div class="profile-hero">
+        <div class="flex gap-16" style="align-items:flex-start;flex-wrap:wrap;">
+          <div class="result-logo">${p.initials}</div>
+          <div style="flex:1;min-width:220px;">
+            <div class="flex gap-8 items-center" style="flex-wrap:wrap;">
+              <h1 style="color:#fff;font-size:26px;margin:0;">${p.name}</h1>
+              ${p.verified ? '<span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>' : ""}
+            </div>
+            <p style="color:#cfe0d6;margin:6px 0 0;font-size:14px;">${p.category} &middot; ${p.city}, ${p.state}</p>
+            <div class="profile-trust-row">
+              <div class="profile-trust-item">&#11088; <strong>${p.recs}</strong>&nbsp;dealership professionals recommend this provider</div>
+              <div class="profile-trust-item"><strong>${p.pct}%</strong>&nbsp;would use again</div>
+            </div>
+          </div>
+          <div style="min-width:190px;">
+            <button class="btn btn-accent w-full" data-save-id="${p.id}"></button>
+            <button class="btn btn-outline-light w-full mt-8" data-soon="Contact Provider">Contact Provider</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid dashboard-grid mt-24" style="align-items:flex-start;">
+        <div>
+          <div class="card card-pad">
+            <h3 style="margin-top:0;">About</h3>
+            <p class="text-sm" style="color:var(--text-700);">${p.description}</p>
+            <div class="result-tags mt-16">${p.services.map((s) => `<span class="chip">${s}</span>`).join("")}</div>
+          </div>
+
+          <div class="card card-pad mt-16">
+            <h3 style="margin-top:0;">What other dealership professionals say</h3>
+            <p class="text-xs text-muted mt-0" style="margin-bottom:14px;">Firsthand recommendations from verified dealership professionals — this is the same data behind the "Recommended by" count above.</p>
+            <div style="display:flex;flex-direction:column;gap:12px;">${quotesHtml || '<p class="text-sm text-muted">No recommendations yet.</p>'}</div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card card-pad">
+            <h4 style="margin-top:0;">Quick Facts</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;" class="text-sm">
+              <div><strong>Location:</strong> ${p.city}, ${p.state}</div>
+              <div><strong>Coverage:</strong> ${p.servesText}</div>
+              <div><strong>Category:</strong> ${p.category}</div>
+              <div><strong>Business Verified:</strong> ${p.verified ? "Yes" : "Not yet verified"}</div>
+            </div>
+          </div>
+          <div class="card card-pad mt-16">
+            <h4 style="margin-top:0;">Have a question first?</h4>
+            <p class="text-xs">Ask The Row and get input from professionals who've worked with this provider.</p>
+            <button class="btn btn-outline btn-block" data-soon="Ask The Row">Ask About This Provider</button>
+          </div>
+        </aside>
+      </div>
+    `;
+
+    initSaveButtons();
+  }
+
+  drRenderProfile();
+</script>
+</body>
+</html>

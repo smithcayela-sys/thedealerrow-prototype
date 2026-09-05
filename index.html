@@ -18,14 +18,14 @@
       <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
     </a>
     <nav class="main-nav">
-      <a href="#" class="nav-soon" data-soon="Find" data-page="find">Find<span class="soon-tag">Soon</span></a>
+      <a href="find.html" data-page="find">Find</a>
       <a href="#" class="nav-soon" data-soon="Ask The Row" data-page="ask">Ask The Row<span class="soon-tag">Soon</span></a>
       <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
       <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
       <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
     </nav>
     <div class="header-actions">
-      <button class="icon-btn" aria-label="Search" data-soon="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button class="icon-btn" aria-label="Search" onclick="window.location.href='find.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
       <a href="#" class="btn btn-outline btn-sm" data-soon="Log In">Log In</a>
       <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
       <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
@@ -34,7 +34,7 @@
 </header>
 <div class="mobile-nav-panel" data-mobile-nav>
   <div class="container">
-    <a href="#" class="nav-soon" data-soon="Find">Find<span class="soon-tag">Soon</span></a>
+    <a href="find.html">Find</a>
     <a href="#" class="nav-soon" data-soon="Ask The Row">Ask The Row<span class="soon-tag">Soon</span></a>
     <a href="#" class="nav-soon" data-soon="Communities">Communities<span class="soon-tag">Soon</span></a>
     <a href="#" class="nav-soon" data-soon="Resources">Resources<span class="soon-tag">Soon</span></a>
@@ -57,9 +57,9 @@
         <div class="sb-field">
           <label>What do you need?</label>
           <div class="select-wrap">
-            <select class="input select">
+            <select class="input select" id="homeSvcSelect">
               <option value="">Search services (e.g. Repossession, Towing, Attorney...)</option>
-              <option>Repossession &amp; Recovery</option>
+              <option>Recovery &amp; Collateral</option>
               <option>Legal &amp; Compliance</option>
               <option>Finance &amp; Collections</option>
               <option>Dealer Technology</option>
@@ -72,9 +72,9 @@
         <div class="divider"></div>
         <div class="sb-field">
           <label>Where do you need it?</label>
-          <input class="input" type="text" placeholder="City, State or ZIP">
+          <input class="input" type="text" id="homeLocInput" placeholder="City, State or ZIP">
         </div>
-        <a href="#" class="btn btn-primary" style="height:47px;" data-soon="Search The Row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search The Row</a>
+        <a href="#" class="btn btn-primary" style="height:47px;" onclick="drHomeSearch(event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search The Row</a>
       </div>
 
       <div class="mt-16" style="display:flex;align-items:center;gap:8px;">
@@ -126,10 +126,10 @@
         <a href="#" class="btn btn-primary mt-8" data-soon="Browse Categories">Browse All Categories &rarr;</a>
       </div>
       <div class="grid grid-3" style="flex:1;min-width:320px;max-width:640px;">
-        <div class="cat-card" data-soon="Recovery &amp; Collateral" style="cursor:pointer;">
+        <a class="cat-card" href="find.html?service=Recovery%20%26%20Collateral" style="cursor:pointer;">
           <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h2l1.5-4.5A2 2 0 0 1 8.4 11H15a2 2 0 0 1 1.9 1.4L18 17h2"></path><circle cx="7.5" cy="17.5" r="1.6"></circle><circle cx="17.5" cy="17.5" r="1.6"></circle></svg></div>
           <div><strong>Recovery &amp; Collateral</strong><span>Repo, Transport, Storage</span></div>
-        </div>
+        </a>
         <div class="cat-card" data-soon="Legal &amp; Compliance" style="cursor:pointer;">
           <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
           <div><strong>Legal &amp; Compliance</strong><span>Attorneys, Bankruptcy</span></div>
@@ -142,10 +142,10 @@
           <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
           <div><strong>Dealer Technology</strong><span>DMS, CRM, Websites</span></div>
         </div>
-        <div class="cat-card" data-soon="Vehicle Operations" style="cursor:pointer;">
+        <a class="cat-card" href="find.html?service=Vehicle%20Operations" style="cursor:pointer;">
           <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle><path d="M5 17H3V6a1 1 0 0 1 1-1h9v12"></path><path d="M14 9h4l3 4v4h-2"></path></svg></div>
           <div><strong>Vehicle Operations</strong><span>Auctions, Recon, Transport</span></div>
-        </div>
+        </a>
         <div class="cat-card" data-soon="More Categories" style="cursor:pointer;">
           <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></div>
           <div><strong>More Categories</strong><span>Sales, Marketing &amp; more</span></div>
@@ -191,7 +191,7 @@
       <div>
         <h4>For Dealers</h4>
         <ul>
-          <li><a href="#" data-soon="Find a Provider">Find a Provider</a></li>
+          <li><a href="find.html">Find a Provider</a></li>
           <li><a href="#" data-soon="Ask The Row">Ask The Row</a></li>
           <li><a href="my-row.html">My Row</a></li>
           <li><a href="join.html">Join The Row</a></li>
@@ -212,7 +212,7 @@
           <li><a href="#" data-soon="Community Guidelines">Community Guidelines</a></li>
           <li><a href="#" data-soon="Help Center">Help Center</a></li>
           <li><a href="#" data-soon="Recommendation Policy">Recommendation Policy</a></li>
-          <li><a href="#" data-soon="Search Categories">Search Categories</a></li>
+          <li><a href="find.html">Search Categories</a></li>
         </ul>
       </div>
       <div>
@@ -233,5 +233,16 @@
 </footer>
 
 <script src="js/app.js"></script>
+<script>
+  function drHomeSearch(e) {
+    e.preventDefault();
+    const service = document.getElementById("homeSvcSelect").value;
+    const location = document.getElementById("homeLocInput").value;
+    const params = new URLSearchParams();
+    if (service) params.set("service", service);
+    if (location) params.set("location", location);
+    window.location.href = "find.html" + (params.toString() ? "?" + params.toString() : "");
+  }
+</script>
 </body>
 </html>
