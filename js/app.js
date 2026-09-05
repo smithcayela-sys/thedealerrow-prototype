@@ -11,48 +11,136 @@
    - recs       -> "Recommended by N dealership professionals": verified professionals with firsthand experience
    - pct        -> "Would Use Again": aggregated firsthand recommendation data (a percentage) */
 const DR_PROVIDERS = [
-  { id: "midwest-recovery", name: "Midwest Recovery Group", initials: "MRG", city: "Omaha", state: "NE", radius: 100, servesText: "Serves NE, IA (100-mile radius)", verified: true, pct: 96, recs: 24, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral",
+  { id: "midwest-recovery", name: "Midwest Recovery Group", initials: "MRG", city: "Omaha", state: "NE", radius: 100, servesText: "Serves NE, IA (100-mile radius)", serviceAreaStates: ["NE","IA"], verified: true, pct: 96, recs: 24, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral",
     description: "Midwest Recovery Group has served dealership and lender clients across Nebraska and Iowa for over a decade, specializing in compliant repossession, voluntary surrender pickups, and secure collateral storage.",
     quotes: [
       { name: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", text: "We've used Midwest Recovery several times for out-of-state units. Reliable, communicate well, and quick turnaround." },
       { name: "Kristen L.", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", text: "Professional every time. They keep us updated from assignment to recovery." }
     ] },
-  { id: "platinum-recovery", name: "Platinum Recovery", initials: "PR", city: "Lincoln", state: "NE", radius: 150, servesText: "Serves NE, IA (150-mile radius)", verified: true, pct: 94, recs: 18, services: ["Repossession","Transport","Lockout/Keys","Storage"], category: "Recovery & Collateral",
+  { id: "platinum-recovery", name: "Platinum Recovery", initials: "PR", city: "Lincoln", state: "NE", radius: 150, servesText: "Serves NE, IA (150-mile radius)", serviceAreaStates: ["NE","IA"], verified: true, pct: 94, recs: 18, services: ["Repossession","Transport","Lockout/Keys","Storage"], category: "Recovery & Collateral",
     description: "Platinum Recovery covers a 150-mile radius out of Lincoln, with a fleet built for both standard repossession and lockout/key situations.",
     quotes: [
       { name: "Derek R.", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", text: "Good communication and fair pricing. Our go-to for anything near Lincoln." }
     ] },
-  { id: "great-plains-recovery", name: "Great Plains Recovery", initials: "GPR", city: "Fremont", state: "NE", radius: 100, servesText: "Serves NE (100-mile radius)", verified: true, pct: 92, recs: 11, services: ["Repossession","Voluntary Surrender","Transport","Inspections"], category: "Recovery & Collateral",
+  { id: "great-plains-recovery", name: "Great Plains Recovery", initials: "GPR", city: "Fremont", state: "NE", radius: 100, servesText: "Serves NE (100-mile radius)", serviceAreaStates: ["NE"], verified: true, pct: 92, recs: 11, services: ["Repossession","Voluntary Surrender","Transport","Inspections"], category: "Recovery & Collateral",
     description: "Great Plains Recovery is a Fremont-based agency covering the broader Nebraska market, known for thorough vehicle condition inspections at time of recovery.",
     quotes: [
       { name: "Derek R.", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", text: "Covers Grand Island and the surrounding area well. Two good experiences so far." }
     ] },
-  { id: "capital-asset-recovery", name: "Capital Asset Recovery", initials: "CAR", city: "Council Bluffs", state: "IA", radius: 100, servesText: "Serves NE, IA (100-mile radius)", verified: true, pct: 90, recs: 9, services: ["Repossession","Transport","Storage","Skip Tracing"], category: "Recovery & Collateral",
+  { id: "capital-asset-recovery", name: "Capital Asset Recovery", initials: "CAR", city: "Council Bluffs", state: "IA", radius: 100, servesText: "Serves NE, IA (100-mile radius)", serviceAreaStates: ["NE","IA"], verified: true, pct: 90, recs: 9, services: ["Repossession","Transport","Storage","Skip Tracing"], category: "Recovery & Collateral",
     description: "Capital Asset Recovery operates out of Council Bluffs with in-house skip tracing capability for harder-to-locate collateral.",
     quotes: [
       { name: "Melissa T.", role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", text: "Their skip tracing has helped us close out a few files we'd otherwise have written off." }
     ] },
-  { id: "steadfast-recovery", name: "Steadfast Recovery", initials: "SR", city: "Omaha", state: "NE", radius: 200, servesText: "Serves NE, IA, SD (200-mile radius)", verified: true, pct: 88, recs: 7, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral",
+  { id: "steadfast-recovery", name: "Steadfast Recovery", initials: "SR", city: "Omaha", state: "NE", radius: 200, servesText: "Serves NE, IA, SD (200-mile radius)", serviceAreaStates: ["NE","IA","SD"], verified: true, pct: 88, recs: 7, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral",
     description: "Steadfast Recovery runs one of the widest coverage radii in the region out of Omaha, reaching into South Dakota for harder-to-place units.",
     quotes: [
       { name: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", text: "Good option when a unit is further out than most agencies will travel." }
     ] },
-  { id: "lone-star-recovery", name: "Lone Star Recovery", initials: "LSR", city: "Dallas", state: "TX", radius: 120, servesText: "Serves TX (120-mile radius)", verified: true, pct: 91, recs: 15, services: ["Repossession","Lockout/Keys","Transport"], category: "Recovery & Collateral",
+  { id: "lone-star-recovery", name: "Lone Star Recovery", initials: "LSR", city: "Dallas", state: "TX", radius: 120, servesText: "Serves TX (120-mile radius)", serviceAreaStates: ["TX"], verified: true, pct: 91, recs: 15, services: ["Repossession","Lockout/Keys","Transport"], category: "Recovery & Collateral",
     description: "Lone Star Recovery is a Dallas-based agency handling repossession and lockout/key service across North Texas.",
     quotes: [
       { name: "Chris B.", role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", text: "Solid communication and they've never missed a scheduled pickup for us." }
     ] },
-  { id: "texas-title-solutions", name: "Texas Title Solutions", initials: "TTS", city: "Austin", state: "TX", radius: 150, servesText: "Serves TX (150-mile radius)", verified: true, pct: 95, recs: 20, services: ["Titling","Temp Tags","DMV Support"], category: "Titling & Administration",
+  { id: "texas-title-solutions", name: "Texas Title Solutions", initials: "TTS", city: "Austin", state: "TX", radius: 150, servesText: "Serves TX (150-mile radius)", serviceAreaStates: ["TX"], verified: true, pct: 95, recs: 20, services: ["Titling","Temp Tags","DMV Support"], category: "Titling & Administration",
     description: "Texas Title Solutions handles titling, temp tags, and DMV support for dealers across Texas, including out-of-state deal paperwork.",
     quotes: [
       { name: "Kristen L.", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", text: "They untangled a title issue on an out-of-state deal faster than we expected." }
     ] },
-  { id: "rapid-auto-transport", name: "Rapid Auto Transport", initials: "RAT", city: "Nationwide", state: "US", radius: 0, servesText: "Nationwide coverage", verified: true, pct: 93, recs: 22, services: ["Transport","Auction Runs","Open/Enclosed"], category: "Vehicle Operations",
+  { id: "rapid-auto-transport", name: "Rapid Auto Transport", initials: "RAT", city: "Nationwide", state: "US", radius: 0, servesText: "Nationwide coverage", serviceAreaStates: ["US"], verified: true, pct: 93, recs: 22, services: ["Transport","Auction Runs","Open/Enclosed"], category: "Vehicle Operations",
     description: "Rapid Auto Transport runs open and enclosed auction and dealer-to-dealer transport nationwide.",
     quotes: [
       { name: "Chris B.", role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", text: "We use them for most of our auction runs. Consistent and easy to schedule." }
     ] },
 ];
+
+/* ---------------- Location matching (Find The Row) ----------------
+   Coverage matching is driven by each provider's own serviceAreaStates
+   (their claimed service area), never by headquarters city/state alone —
+   a provider headquartered in Omaha can still legitimately serve Grand
+   Island, NE if NE is in their claimed service area. Zero real matches
+   means zero results are shown; this never falls back to displaying
+   unrelated providers as if they served an area they don't. */
+const DR_STATE_NAMES = {
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+  CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+  HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
+  KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+  MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri",
+  MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+  NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
+  OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+  SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont",
+  VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+  DC: "District of Columbia",
+};
+
+/* Known cities used in this mock dataset's example markets/scenarios, so a bare city name
+   (with or without a state) can resolve to the state it's actually in. */
+const DR_CITY_STATE = {
+  "grand island": "NE", "omaha": "NE", "lincoln": "NE", "fremont": "NE",
+  "council bluffs": "IA", "dallas": "TX", "austin": "TX", "houston": "TX",
+};
+
+function drStateAbbrFromName(name) {
+  const n = (name || "").trim().toLowerCase();
+  if (!n) return null;
+  for (const abbr in DR_STATE_NAMES) {
+    if (DR_STATE_NAMES[abbr].toLowerCase() === n) return abbr;
+  }
+  return null;
+}
+
+/* Resolves a free-text location query ("Grand Island, NE", "Nebraska", "TX", "Omaha")
+   down to a state abbreviation, or null if it can't be confidently resolved. */
+function drResolveLocationState(rawQuery) {
+  const q = (rawQuery || "").trim().toLowerCase();
+  if (!q) return null;
+  const parts = q.split(",").map((s) => s.trim()).filter(Boolean);
+  const tail = parts.length > 1 ? parts[parts.length - 1] : q;
+  if (DR_STATE_NAMES[tail.toUpperCase()]) return tail.toUpperCase();
+  const abbrFromTail = drStateAbbrFromName(tail);
+  if (abbrFromTail) return abbrFromTail;
+  const abbrFromWhole = drStateAbbrFromName(q);
+  if (abbrFromWhole) return abbrFromWhole;
+  const cityPart = parts[0] || q;
+  if (DR_CITY_STATE[cityPart]) return DR_CITY_STATE[cityPart];
+  return null;
+}
+
+/* True only when the provider's own claimed service area actually covers the resolved
+   state (or the provider is genuinely nationwide) -- never based on headquarters alone. */
+function drProviderServesState(p, stateAbbr) {
+  if (p.state === "US") return true;
+  const areas = p.serviceAreaStates || [p.state];
+  return areas.includes(stateAbbr);
+}
+
+function drProviderMatchesLocation(p, locationQuery) {
+  const q = (locationQuery || "").trim();
+  if (!q) return true;
+  if (p.state === "US") return true; // genuinely nationwide coverage
+  const resolvedState = drResolveLocationState(q);
+  if (resolvedState) return drProviderServesState(p, resolvedState);
+  // Query didn't resolve to a known state/city: fall back only to a direct, honest
+  // match against the provider's own headquarters -- never implies coverage we can't back up.
+  const qLower = q.toLowerCase();
+  return (
+    (p.city + ", " + p.state).toLowerCase().includes(qLower) ||
+    p.city.toLowerCase().includes(qLower) ||
+    p.state.toLowerCase() === qLower
+  );
+}
+
+/* Dealer-reported actual experience -- distinct from the provider's own claimed coverage
+   above. Pulled from the firsthand quotes already attached to each provider. */
+function drDealerReportedStates(p) {
+  const seen = [];
+  (p.quotes || []).forEach((quote) => {
+    if (quote.state && seen.indexOf(quote.state) === -1) seen.push(quote.state);
+  });
+  return seen;
+}
 
 const DR_QUESTIONS = [
   { id: "recovery-grand-island", title: "Recovery recommendation needed near Grand Island, NE", topic: "Recovery & Collateral", location: "Nebraska", author: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", time: "2 hours ago", views: 324, answers: 7, recs: 3,
