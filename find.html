@@ -259,12 +259,32 @@
     "Vehicle Operations": ["Vehicle Operations"],
   };
 
+  const DR_STATE_NAMES = {
+    AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+    CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+    HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
+    KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+    MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri",
+    MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+    NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
+    OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+    SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont",
+    VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+    DC: "District of Columbia",
+  };
+
   function drProviderMatchesLocation(p, locationQuery) {
     if (!locationQuery) return true;
     const q = locationQuery.trim().toLowerCase();
     if (!q) return true;
     if (p.state === "US") return true; // nationwide providers always match a location search
-    return (p.city + ", " + p.state).toLowerCase().includes(q) || p.state.toLowerCase() === q || p.city.toLowerCase().includes(q);
+    const stateFullName = (DR_STATE_NAMES[p.state] || "").toLowerCase();
+    return (
+      (p.city + ", " + p.state).toLowerCase().includes(q) ||
+      p.state.toLowerCase() === q ||
+      p.city.toLowerCase().includes(q) ||
+      (stateFullName && (stateFullName === q || stateFullName.includes(q)))
+    );
   }
 
   function drRenderResultCard(p) {
