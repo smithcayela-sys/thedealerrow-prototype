@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find a Provider | The Dealer Row</title>
+<meta name="description" content="Search The Dealer Row's nationwide directory of dealer-recommended providers by service and location.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="find">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="find.html" class="active" data-page="find">Find</a>
+      <a href="#" class="nav-soon" data-soon="Ask The Row" data-page="ask">Ask The Row<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search" onclick="document.getElementById('locInput').focus();document.getElementById('locInput').scrollIntoView({behavior:'smooth',block:'center'});"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <a href="join.html" class="btn btn-outline btn-sm">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
+      <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-panel" data-mobile-nav>
+  <div class="container">
+    <a href="find.html">Find</a>
+    <a href="#" data-soon="Ask The Row">Ask The Row</a>
+    <a href="#" data-soon="Communities">Communities</a>
+    <a href="#" data-soon="Resources">Resources</a>
+    <a href="#" data-soon="About">About</a>
+    <div class="mnp-actions">
+      <a href="join.html" class="btn btn-outline-light btn-sm w-full">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm w-full">Join The Row</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container section-tight hero-inner">
+    <span class="eyebrow">Search Results</span>
+    <h1 style="color:#fff;font-size:32px;margin-top:8px;">Find trusted solutions in <span style="color:var(--green-400);">every market.</span></h1>
+    <p style="color:#cfe0d6;margin-bottom:22px;">Real recommendations. Real experience. Real people.</p>
+
+    <div class="search-box">
+      <div class="sb-field">
+        <label>What do you need?</label>
+        <div class="select-wrap">
+          <select class="input select" id="svcSelect">
+            <option value="">All Categories</option>
+            <option>Recovery &amp; Collateral</option>
+            <option>Legal &amp; Compliance</option>
+            <option>Finance &amp; Collections</option>
+            <option>Dealer Technology</option>
+            <option>Titling &amp; Administration</option>
+            <option>Vehicle Operations</option>
+          </select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="sb-field">
+        <label>Where do you need it?</label>
+        <input class="input" type="text" id="locInput" placeholder="City, State or ZIP">
+      </div>
+      <div class="divider"></div>
+      <div class="sb-field" style="max-width:150px;">
+        <label>Radius</label>
+        <div class="select-wrap">
+          <select class="input select" id="radiusSelect">
+            <option>100 miles</option>
+            <option>50 miles</option>
+            <option>250 miles</option>
+            <option>Any distance</option>
+          </select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="height:47px;" onclick="drRunFindSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-top:30px;padding-bottom:70px;">
+  <div class="grid find-grid" style="align-items:flex-start;">
+
+    <!-- Filters -->
+    <aside class="card card-pad">
+      <div class="flex justify-between items-center">
+        <h3 style="margin:0;">Filters</h3>
+        <a href="#" class="text-sm" style="color:var(--green-600);font-weight:600;">Clear All</a>
+      </div>
+
+      <div style="margin-top:18px;">
+        <h4>Distance</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> 25 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> 50 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" checked style="accent-color:var(--green-600);"> 100 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> 250 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> Any distance</label>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;">
+        <h4>Services</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" checked style="accent-color:var(--green-600);"> Repossession</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" checked style="accent-color:var(--green-600);"> Voluntary Surrender</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Transport</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Storage</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Lockout/Keys</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Skip Tracing</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Inspections</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Other</label>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;border-top:1px solid var(--border);padding-top:16px;">
+        <details open><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">Verified</summary></details>
+      </div>
+      <div style="margin-top:12px;">
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">Dealer Recommended</summary></details>
+      </div>
+      <div style="margin-top:12px;">
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">States Served</summary></details>
+      </div>
+      <div style="margin-top:12px;">
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">Cities Served</summary></details>
+      </div>
+    </aside>
+
+    <!-- Results -->
+    <div>
+      <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:10px;">
+        <div>
+          <h2 id="resultsHeading" style="margin-bottom:2px;">All providers</h2>
+          <p class="text-sm mt-0" id="resultsCountText">Showing all providers</p>
+        </div>
+        <div class="select-wrap" style="width:190px;">
+          <select class="input select"><option>Recommended</option><option>Highest Rated</option><option>Most Recommendations</option><option>Closest</option></select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;" id="resultsList"></div>
+      <p class="text-sm text-muted" id="noResultsNote" style="display:none;margin-top:14px;">No exact matches for that search, so here's the full nationwide list instead — try a broader category or radius.</p>
+    </div>
+
+    <!-- Right rail -->
+    <aside>
+      <div class="card" style="overflow:hidden;">
+        <div class="map-box">
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="220" fill="#dcefe3"/>
+            <circle cx="150" cy="110" r="70" fill="#bfe3cd" opacity=".8"/>
+            <circle cx="150" cy="110" r="6" fill="#0d3324"/>
+            <text x="160" y="108" font-size="10" fill="#33403a" font-family="Inter">Omaha</text>
+            <circle cx="105" cy="70" r="3.5" fill="#178a4c"/>
+            <text x="112" y="72" font-size="8.5" fill="#52605a" font-family="Inter">Sioux City</text>
+            <circle cx="70" cy="105" r="3.5" fill="#178a4c"/>
+            <text x="77" y="107" font-size="8.5" fill="#52605a" font-family="Inter">Norfolk</text>
+            <circle cx="185" cy="120" r="3.5" fill="#178a4c"/>
+            <text x="192" y="122" font-size="8.5" fill="#52605a" font-family="Inter">Council Bluffs</text>
+            <circle cx="140" cy="150" r="3.5" fill="#178a4c"/>
+            <text x="147" y="152" font-size="8.5" fill="#52605a" font-family="Inter">Lincoln</text>
+            <rect x="205" y="18" width="46" height="18" rx="9" fill="#0d3324"/>
+            <text x="212" y="30" font-size="9.5" fill="#fff" font-family="Inter" font-weight="700">100 mi</text>
+          </svg>
+        </div>
+        <div class="card-pad" style="padding-top:16px;">
+          <label style="font-size:12px;font-weight:700;">Refine by location</label>
+          <div class="flex gap-8 mt-8">
+            <input class="input" placeholder="Add a city or ZIP">
+            <button class="btn btn-outline btn-sm">&rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-pad mt-16" style="background:var(--forest-950);border:none;color:#fff;">
+        <div class="flex gap-8 items-center"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" width="20" height="20" style="stroke:var(--green-500);"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><strong>Can't find what you need?</strong></div>
+        <p style="color:#a9b8b0;font-size:13px;margin-top:8px;">Ask The Row and get recommendations from industry professionals who know this market.</p>
+        <a href="#" class="btn btn-accent btn-sm w-full mt-8" data-soon="Ask The Row">Ask The Row &rarr;</a>
+      </div>
+
+      <div class="card card-pad mt-16">
+        <h4>Helpful Tips</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Use a larger radius to see more options</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Check verified status</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Read dealer recommendations</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);">Don't see the right provider? <a href="#" data-soon="Ask The Row" style="color:var(--green-600);font-weight:700;">Ask The Row!</a></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-badges" style="padding-bottom:26px;">
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg> Real Connections</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Trusted Solutions</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg> A Stronger Industry</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Nationwide Together</div>
+    </div>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:12px;">
+          <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+          <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span></div>
+        </a>
+        <p style="font-size:13px;max-width:220px;">Where the automotive industry connects. Find. Ask. Recommend. Connect.</p>
+      </div>
+      <div>
+        <h4>For Dealers</h4>
+        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="#" data-soon="Ask The Row">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
+      </div>
+      <div>
+        <h4>For Providers</h4>
+        <ul><li><a href="join.html">Claim Your Profile</a></li><li><a href="join.html">Join as a Provider</a></li><li><a href="#">Vendor Guidelines</a></li><li><a href="#">Get Recommended</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Community Guidelines</a></li><li><a href="#">Help Center</a></li><li><a href="#">Recommendation Policy</a></li><li><a href="find.html">Search Categories</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 The Dealer Row. All rights reserved.</span>
+      <span style="display:flex;gap:18px;"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Community Guidelines</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  /* Category name -> matching provider.category / keyword map (demo-level matching, not a real search engine) */
+  const DR_CATEGORY_KEYWORDS = {
+    "Recovery & Collateral": ["Recovery & Collateral"],
+    "Legal & Compliance": ["Legal & Compliance"],
+    "Finance & Collections": ["Finance & Collections"],
+    "Dealer Technology": ["Dealer Technology"],
+    "Titling & Administration": ["Titling & Administration"],
+    "Vehicle Operations": ["Vehicle Operations"],
+  };
+
+  const DR_STATE_NAMES = {
+    AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+    CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+    HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
+    KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+    MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri",
+    MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+    NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
+    OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+    SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont",
+    VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+    DC: "District of Columbia",
+  };
+
+  function drProviderMatchesLocation(p, locationQuery) {
+    if (!locationQuery) return true;
+    const q = locationQuery.trim().toLowerCase();
+    if (!q) return true;
+    if (p.state === "US") return true; // nationwide providers always match a location search
+    const stateFullName = (DR_STATE_NAMES[p.state] || "").toLowerCase();
+    return (
+      (p.city + ", " + p.state).toLowerCase().includes(q) ||
+      p.state.toLowerCase() === q ||
+      p.city.toLowerCase().includes(q) ||
+      (stateFullName && (stateFullName === q || stateFullName.includes(q)))
+    );
+  }
+
+  function drRenderResultCard(p) {
+    const card = document.createElement("div");
+    card.className = "result-card";
+    card.innerHTML = `
+      <div class="result-logo">${p.initials}</div>
+      <div class="result-meta">
+        <div class="result-title-row">
+          <h3><a href="provider-profile.html?id=${p.id}">${p.name}</a></h3>
+          ${p.verified ? '<span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>' : ""}
+        </div>
+        <div class="result-sub"><span>&#11088; Recommended by ${p.recs} dealership professionals</span></div>
+        <div class="result-sub" style="margin-top:-4px;"><span>&#128205; ${p.city}, ${p.state} &middot; ${p.servesText}</span></div>
+        <div class="result-tags">${p.services.map((s) => `<span class="chip">${s}</span>`).join("")}</div>
+      </div>
+      <div class="result-side">
+        <div class="pct">${p.pct}%</div>
+        <div class="pctlbl">Would use again</div>
+        <a href="provider-profile.html?id=${p.id}" class="btn btn-accent btn-sm w-full">View Profile &rarr;</a>
+        <button class="btn btn-outline btn-sm w-full mt-8" data-save-id="${p.id}"></button>
+      </div>`;
+    return card;
+  }
+
+  function drRenderFindResults(service, location) {
+    const list = document.getElementById("resultsList");
+    const heading = document.getElementById("resultsHeading");
+    const countText = document.getElementById("resultsCountText");
+    const noResultsNote = document.getElementById("noResultsNote");
+    if (!list) return;
+
+    let filtered = DR_PROVIDERS.filter((p) => {
+      const svcMatch = !service || p.category === service;
+      const locMatch = drProviderMatchesLocation(p, location);
+      return svcMatch && locMatch;
+    });
+
+    let usedFallback = false;
+    if (filtered.length === 0) {
+      filtered = DR_PROVIDERS.slice();
+      usedFallback = true;
+    }
+
+    // sort by "Would use again" percentage, highest first (matches the default "Recommended" sort)
+    filtered.sort((a, b) => b.pct - a.pct);
+
+    list.innerHTML = "";
+    filtered.forEach((p) => list.appendChild(drRenderResultCard(p)));
+
+    let headingText;
+    if (usedFallback || (!service && !location)) {
+      headingText = "All providers";
+    } else if (service && location) {
+      headingText = `${service} near ${location}`;
+    } else if (service) {
+      headingText = service;
+    } else {
+      headingText = `All providers near ${location}`;
+    }
+    if (heading) heading.textContent = headingText;
+    if (countText) countText.textContent = `Showing ${filtered.length} provider${filtered.length === 1 ? "" : "s"}${location && !usedFallback ? " serving this area" : ""}`;
+    if (noResultsNote) noResultsNote.style.display = usedFallback && (service || location) ? "" : "none";
+
+    initSaveButtons(); // (re)wire Save buttons on the freshly-rendered cards
+  }
+
+  function drRunFindSearch() {
+    const service = document.getElementById("svcSelect").value;
+    const location = document.getElementById("locInput").value;
+    const params = new URLSearchParams();
+    if (service) params.set("service", service);
+    if (location) params.set("location", location);
+    history.replaceState(null, "", "find.html" + (params.toString() ? "?" + params.toString() : ""));
+    drRenderFindResults(service, location);
+    document.getElementById("resultsHeading").scrollIntoView({ behavior: "smooth" });
+  }
+
+  // On load: read ?service= and ?location= from the URL (arriving from the homepage search or a category card)
+  (function drInitFindFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service") || "";
+    const location = params.get("location") || document.getElementById("locInput").value;
+    if (service) document.getElementById("svcSelect").value = service;
+    if (params.get("location")) document.getElementById("locInput").value = location;
+    drRenderFindResults(service, location);
+  })();
+</script>
+</body>
+</html>
