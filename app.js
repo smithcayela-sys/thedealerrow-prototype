@@ -5,15 +5,53 @@
    ========================================================================== */
 
 /* ---------------- Mock data ---------------- */
+/* Three distinct trust signals are kept separate everywhere this data renders — never collapsed
+   into one generic rating:
+   - verified   -> "Business Verified": the business/profile relationship has been verified
+   - recs       -> "Recommended by N dealership professionals": verified professionals with firsthand experience
+   - pct        -> "Would Use Again": aggregated firsthand recommendation data (a percentage) */
 const DR_PROVIDERS = [
-  { id: "midwest-recovery", name: "Midwest Recovery Group", initials: "MRG", city: "Omaha", state: "NE", radius: 100, servesText: "Serves NE, IA (100-mile radius)", pct: 96, recs: 24, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral" },
-  { id: "platinum-recovery", name: "Platinum Recovery", initials: "PR", city: "Lincoln", state: "NE", radius: 150, servesText: "Serves NE, IA (150-mile radius)", pct: 94, recs: 18, services: ["Repossession","Transport","Lockout/Keys","Storage"], category: "Recovery & Collateral" },
-  { id: "great-plains-recovery", name: "Great Plains Recovery", initials: "GPR", city: "Fremont", state: "NE", radius: 100, servesText: "Serves NE (100-mile radius)", pct: 92, recs: 11, services: ["Repossession","Voluntary Surrender","Transport","Inspections"], category: "Recovery & Collateral" },
-  { id: "capital-asset-recovery", name: "Capital Asset Recovery", initials: "CAR", city: "Council Bluffs", state: "IA", radius: 100, servesText: "Serves NE, IA (100-mile radius)", pct: 90, recs: 9, services: ["Repossession","Transport","Storage","Skip Tracing"], category: "Recovery & Collateral" },
-  { id: "steadfast-recovery", name: "Steadfast Recovery", initials: "SR", city: "Omaha", state: "NE", radius: 200, servesText: "Serves NE, IA, SD (200-mile radius)", pct: 88, recs: 7, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral" },
-  { id: "lone-star-recovery", name: "Lone Star Recovery", initials: "LSR", city: "Dallas", state: "TX", radius: 120, servesText: "Serves TX (120-mile radius)", pct: 91, recs: 15, services: ["Repossession","Lockout/Keys","Transport"], category: "Recovery & Collateral" },
-  { id: "texas-title-solutions", name: "Texas Title Solutions", initials: "TTS", city: "Austin", state: "TX", radius: 150, servesText: "Serves TX (150-mile radius)", pct: 95, recs: 20, services: ["Titling","Temp Tags","DMV Support"], category: "Titling & Administration" },
-  { id: "rapid-auto-transport", name: "Rapid Auto Transport", initials: "RAT", city: "Nationwide", state: "US", radius: 0, servesText: "Nationwide coverage", pct: 93, recs: 22, services: ["Transport","Auction Runs","Open/Enclosed"], category: "Vehicle Operations" },
+  { id: "midwest-recovery", name: "Midwest Recovery Group", initials: "MRG", city: "Omaha", state: "NE", radius: 100, servesText: "Serves NE, IA (100-mile radius)", verified: true, pct: 96, recs: 24, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral",
+    description: "Midwest Recovery Group has served dealership and lender clients across Nebraska and Iowa for over a decade, specializing in compliant repossession, voluntary surrender pickups, and secure collateral storage.",
+    quotes: [
+      { name: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", text: "We've used Midwest Recovery several times for out-of-state units. Reliable, communicate well, and quick turnaround." },
+      { name: "Kristen L.", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", text: "Professional every time. They keep us updated from assignment to recovery." }
+    ] },
+  { id: "platinum-recovery", name: "Platinum Recovery", initials: "PR", city: "Lincoln", state: "NE", radius: 150, servesText: "Serves NE, IA (150-mile radius)", verified: true, pct: 94, recs: 18, services: ["Repossession","Transport","Lockout/Keys","Storage"], category: "Recovery & Collateral",
+    description: "Platinum Recovery covers a 150-mile radius out of Lincoln, with a fleet built for both standard repossession and lockout/key situations.",
+    quotes: [
+      { name: "Derek R.", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", text: "Good communication and fair pricing. Our go-to for anything near Lincoln." }
+    ] },
+  { id: "great-plains-recovery", name: "Great Plains Recovery", initials: "GPR", city: "Fremont", state: "NE", radius: 100, servesText: "Serves NE (100-mile radius)", verified: true, pct: 92, recs: 11, services: ["Repossession","Voluntary Surrender","Transport","Inspections"], category: "Recovery & Collateral",
+    description: "Great Plains Recovery is a Fremont-based agency covering the broader Nebraska market, known for thorough vehicle condition inspections at time of recovery.",
+    quotes: [
+      { name: "Derek R.", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", text: "Covers Grand Island and the surrounding area well. Two good experiences so far." }
+    ] },
+  { id: "capital-asset-recovery", name: "Capital Asset Recovery", initials: "CAR", city: "Council Bluffs", state: "IA", radius: 100, servesText: "Serves NE, IA (100-mile radius)", verified: true, pct: 90, recs: 9, services: ["Repossession","Transport","Storage","Skip Tracing"], category: "Recovery & Collateral",
+    description: "Capital Asset Recovery operates out of Council Bluffs with in-house skip tracing capability for harder-to-locate collateral.",
+    quotes: [
+      { name: "Melissa T.", role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", text: "Their skip tracing has helped us close out a few files we'd otherwise have written off." }
+    ] },
+  { id: "steadfast-recovery", name: "Steadfast Recovery", initials: "SR", city: "Omaha", state: "NE", radius: 200, servesText: "Serves NE, IA, SD (200-mile radius)", verified: true, pct: 88, recs: 7, services: ["Repossession","Voluntary Surrender","Transport","Storage"], category: "Recovery & Collateral",
+    description: "Steadfast Recovery runs one of the widest coverage radii in the region out of Omaha, reaching into South Dakota for harder-to-place units.",
+    quotes: [
+      { name: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", text: "Good option when a unit is further out than most agencies will travel." }
+    ] },
+  { id: "lone-star-recovery", name: "Lone Star Recovery", initials: "LSR", city: "Dallas", state: "TX", radius: 120, servesText: "Serves TX (120-mile radius)", verified: true, pct: 91, recs: 15, services: ["Repossession","Lockout/Keys","Transport"], category: "Recovery & Collateral",
+    description: "Lone Star Recovery is a Dallas-based agency handling repossession and lockout/key service across North Texas.",
+    quotes: [
+      { name: "Chris B.", role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", text: "Solid communication and they've never missed a scheduled pickup for us." }
+    ] },
+  { id: "texas-title-solutions", name: "Texas Title Solutions", initials: "TTS", city: "Austin", state: "TX", radius: 150, servesText: "Serves TX (150-mile radius)", verified: true, pct: 95, recs: 20, services: ["Titling","Temp Tags","DMV Support"], category: "Titling & Administration",
+    description: "Texas Title Solutions handles titling, temp tags, and DMV support for dealers across Texas, including out-of-state deal paperwork.",
+    quotes: [
+      { name: "Kristen L.", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", text: "They untangled a title issue on an out-of-state deal faster than we expected." }
+    ] },
+  { id: "rapid-auto-transport", name: "Rapid Auto Transport", initials: "RAT", city: "Nationwide", state: "US", radius: 0, servesText: "Nationwide coverage", verified: true, pct: 93, recs: 22, services: ["Transport","Auction Runs","Open/Enclosed"], category: "Vehicle Operations",
+    description: "Rapid Auto Transport runs open and enclosed auction and dealer-to-dealer transport nationwide.",
+    quotes: [
+      { name: "Chris B.", role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", text: "We use them for most of our auction runs. Consistent and easy to schedule." }
+    ] },
 ];
 
 const DR_QUESTIONS = [
@@ -68,7 +106,139 @@ document.addEventListener("DOMContentLoaded", () => {
   markActiveNav();
   initComingSoon();
   initAvatarMenu();
+  initSaveButtons();
+  if (document.body.dataset.page === "myrow") renderSavedProvidersFromStorage();
 });
+
+/* ---------------- Save to My Row (client-side only, no backend) ----------------
+   Prototype persistence: a provider's saved/unsaved state lives in this browser's
+   localStorage only. It is device/browser-specific by design for this milestone —
+   there is no account, backend, or database behind it yet. */
+const DR_SAVED_KEY = "dr_saved_provider_ids";
+
+function drGetSavedIds() {
+  try {
+    const raw = localStorage.getItem(DR_SAVED_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function drIsSaved(id) {
+  return drGetSavedIds().includes(id);
+}
+
+function drSetSavedIds(ids) {
+  try { localStorage.setItem(DR_SAVED_KEY, JSON.stringify(ids)); } catch (e) { /* storage unavailable — fail silently, demo-only */ }
+}
+
+/* Adds or removes a provider id from the saved list; returns the new saved state (bool) */
+function drToggleSaved(id) {
+  const ids = drGetSavedIds();
+  const idx = ids.indexOf(id);
+  let nowSaved;
+  if (idx === -1) { ids.push(id); nowSaved = true; }
+  else { ids.splice(idx, 1); nowSaved = false; }
+  drSetSavedIds(ids);
+  return nowSaved;
+}
+
+function drProviderById(id) {
+  return DR_PROVIDERS.find((p) => p.id === id) || null;
+}
+
+/* Wires every [data-save-id] button on the page (Find results + Provider Profile).
+   Safe to call repeatedly after re-rendering a list — already-wired buttons are skipped
+   so a click never fires the toggle more than once. */
+function initSaveButtons() {
+  document.querySelectorAll("[data-save-id]").forEach((btn) => {
+    const id = btn.dataset.saveId;
+    drPaintSaveButton(btn, drIsSaved(id));
+    if (btn.dataset.saveWired === "true") return;
+    btn.dataset.saveWired = "true";
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const nowSaved = drToggleSaved(id);
+      drPaintSaveButton(btn, nowSaved);
+      const provider = drProviderById(id);
+      const name = provider ? provider.name : "Provider";
+      drToast(nowSaved ? `${name} saved to My Row.` : `${name} removed from My Row.`);
+      // keep any other Save button for the same provider on this page (e.g. card + profile) in sync
+      document.querySelectorAll(`[data-save-id="${id}"]`).forEach((other) => {
+        if (other !== btn) drPaintSaveButton(other, nowSaved);
+      });
+    });
+  });
+}
+
+function drPaintSaveButton(btn, saved) {
+  if (saved) {
+    btn.classList.add("is-saved");
+    btn.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Saved to My Row`;
+  } else {
+    btn.classList.remove("is-saved");
+    btn.textContent = "Save to My Row";
+  }
+}
+
+/* ---------------- My Row: render localStorage-saved providers (My Row only) ----------------
+   The five providers already in the page's static HTML represent the account's existing saved
+   history and are left exactly as designed. Anything saved via the new Find flow in this browser
+   is appended below them, and only the saved-count text/stat reflects the total. */
+function renderSavedProvidersFromStorage() {
+  const list = document.getElementById("savedList");
+  const countStat = document.getElementById("savedCountStat");
+  const showingText = document.getElementById("savedShowingText");
+  if (!list) return;
+
+  const STATIC_SAVED_COUNT = 5;
+  const STATIC_TOTAL_COUNT = 32;
+  const ids = drGetSavedIds();
+
+  // Clear any previously-rendered dynamic cards before re-rendering (keeps this idempotent)
+  list.querySelectorAll("[data-dynamic-saved-card]").forEach((el) => el.remove());
+
+  ids.forEach((id) => {
+    const p = drProviderById(id);
+    if (!p) return;
+    const card = document.createElement("div");
+    card.className = "result-card";
+    card.setAttribute("data-dynamic-saved-card", "true");
+    card.setAttribute("data-name", `${p.name} ${p.city} ${p.state} ${p.services.join(" ")}`);
+    card.style.padding = "14px 16px";
+    card.innerHTML = `
+      <div class="result-logo" style="width:44px;height:44px;font-size:10px;">${p.initials}</div>
+      <div class="result-meta">
+        <div class="result-title-row"><h3 style="font-size:15px;"><a href="provider-profile.html?id=${p.id}">${p.name}</a></h3>${p.verified ? '<span class="badge badge-verified" style="padding:2px 8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span>' : ""}</div>
+        <div class="result-sub" style="margin:2px 0;">${p.city}, ${p.state} &middot; ${p.services.join(" &middot; ")}</div>
+      </div>
+      <div class="flex gap-8" style="align-items:center;flex-shrink:0;">
+        <button class="btn btn-sm" style="background:var(--green-50);color:var(--green-700);" data-save-id="${p.id}"></button>
+      </div>`;
+    list.appendChild(card);
+  });
+
+  const n = ids.length;
+  if (countStat) countStat.textContent = String(STATIC_TOTAL_COUNT + n);
+  if (showingText) showingText.textContent = `Showing ${STATIC_SAVED_COUNT + n} of ${STATIC_TOTAL_COUNT + n} saved providers`;
+
+  // wire the freshly-created Save/Saved buttons (initSaveButtons already ran once at boot)
+  list.querySelectorAll("[data-dynamic-saved-card] [data-save-id]").forEach((btn) => {
+    const id = btn.dataset.saveId;
+    drPaintSaveButton(btn, true);
+    btn.dataset.saveWired = "true";
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      drToggleSaved(id);
+      const provider = drProviderById(id);
+      drToast(`${provider ? provider.name : "Provider"} removed from My Row.`);
+      renderSavedProvidersFromStorage();
+      document.querySelectorAll(`[data-save-id="${id}"]`).forEach((other) => drPaintSaveButton(other, false));
+    });
+  });
+}
 
 /* ---------------- Coming soon toast (for modules outside current build scope) ---------------- */
 function drToast(message) {
