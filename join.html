@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join The Row | The Dealer Row</title>
+<meta name="description" content="Join The Dealer Row — the nationwide professional network for automotive industry participants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+  .onboard-grid { display: grid; grid-template-columns: 280px 1fr 300px; gap: 22px; align-items: flex-start; }
+  .privacy-option { border: 2px solid var(--border); border-radius: var(--radius-md); padding: 13px 14px; cursor: pointer; display:flex; align-items:flex-start; gap:10px; }
+  .privacy-option.selected { border-color: var(--green-600); background: var(--green-50); }
+  .privacy-option .radio { width:18px;height:18px;border-radius:50%;border:2px solid var(--border-strong);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center; }
+  .privacy-option.selected .radio { border-color: var(--green-600); background: var(--green-600); }
+  .privacy-option.selected .radio::after { content:"";width:8px;height:8px;border-radius:50%;background:#fff; }
+  .privacy-option strong { font-size: 13.5px; display:block; }
+  .privacy-option span.sub { font-size: 11.5px; color: var(--text-500); }
+  .rec-pill { background: var(--green-600); color:#fff; font-size:9.5px; font-weight:800; padding:2px 7px; border-radius:6px; margin-left:6px; text-transform:uppercase; letter-spacing:.04em; }
+  .success-check { width:88px;height:88px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;margin:0 auto 22px; }
+  .success-check svg { width:44px;height:44px;color:var(--green-600); }
+  .verify-pending-icon { width:80px;height:80px;border-radius:50%;background:var(--amber-100);display:flex;align-items:center;justify-content:center;margin:0 auto 20px; }
+  .verify-pending-icon svg { width:38px;height:38px;color:var(--amber-text); }
+  .field-lock { display:flex;gap:8px;align-items:flex-start;background:var(--gray-100);border-radius:var(--radius-sm);padding:11px 13px;font-size:11.5px;color:var(--text-600);margin-top:8px; }
+  .field-lock svg { width:14px;height:14px;flex-shrink:0;margin-top:1px;color:var(--text-500); }
+  @media (max-width: 1080px) { .onboard-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="join">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="#" class="nav-soon" data-soon="Find" data-page="find">Find<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Ask The Row" data-page="ask">Ask The Row<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search" data-soon="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <a href="#" class="btn btn-outline btn-sm" data-soon="Log In">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
+      <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-panel" data-mobile-nav>
+  <div class="container">
+    <a href="#" class="nav-soon" data-soon="Find">Find<span class="soon-tag">Soon</span></a>
+    <a href="#" class="nav-soon" data-soon="Ask The Row">Ask The Row<span class="soon-tag">Soon</span></a>
+    <a href="#" class="nav-soon" data-soon="Communities">Communities<span class="soon-tag">Soon</span></a>
+    <a href="#" class="nav-soon" data-soon="Resources">Resources<span class="soon-tag">Soon</span></a>
+    <a href="#" class="nav-soon" data-soon="About">About<span class="soon-tag">Soon</span></a>
+    <div class="mnp-actions">
+      <a href="#" class="btn btn-outline-light btn-sm w-full" data-soon="Log In">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm w-full">Join The Row</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container hero-inner section-tight">
+    <span class="eyebrow">Built for the industry.</span>
+    <h1 style="color:#fff;font-size:34px;margin-top:8px;">Join <span style="color:var(--green-400);">The Row.</span></h1>
+    <p style="color:#cfe0d6;margin-bottom:0;">Real people. Real experience. A stronger industry.</p>
+    <div class="grid grid-4 mt-24" style="max-width:760px;">
+      <div class="flex gap-8 items-center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke-width="2" style="stroke:var(--green-400);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg><span style="color:#dbe6e0;font-size:13px;">Verified Professionals</span></div>
+      <div class="flex gap-8 items-center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke-width="2" style="stroke:var(--green-400);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span style="color:#dbe6e0;font-size:13px;">Trusted Connections</span></div>
+      <div class="flex gap-8 items-center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke-width="2" style="stroke:var(--green-400);"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span style="color:#dbe6e0;font-size:13px;">Real Conversations</span></div>
+      <div class="flex gap-8 items-center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke-width="2" style="stroke:var(--green-400);"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg><span style="color:#dbe6e0;font-size:13px;">A Stronger Industry</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-top:34px;padding-bottom:70px;">
+  <div class="card card-pad" style="max-width:1180px;margin:0 auto;">
+
+    <!-- Stepper -->
+    <div class="stepper" id="stepper">
+      <div class="step" data-step-dot="1"><div class="dot">1</div><div class="label">Account Type</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step-dot="2"><div class="dot">2</div><div class="label">Your Information</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step-dot="3"><div class="dot">3</div><div class="label">Verification</div></div>
+      <div class="step-line"></div>
+      <div class="step" data-step-dot="4"><div class="dot">4</div><div class="label">Get Started</div></div>
+    </div>
+
+    <!-- STEP 1: Account Type -->
+    <div class="step-panel active" data-step-panel="1">
+      <h3 style="font-size:22px;">How are you part of the automotive industry?</h3>
+      <p>Select the option that best describes you to get started.</p>
+
+      <div class="choice-grid mt-16" data-choice-group id="accountTypeGroup">
+        <div class="choice-card selected" data-value="dealer">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 21v-6h6v6"></path></svg></div>
+          <h4>Dealership Professional</h4>
+          <p>I work for or own a dealership.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Access industry knowledge</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Find trusted service providers</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Connect with other dealers</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Build your professional network</li>
+          </ul>
+        </div>
+        <div class="choice-card" data-value="vendor">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
+          <h4>Service Provider / Vendor</h4>
+          <p>My business provides products or services to dealerships.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Showcase your business</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Connect with verified dealers</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Get real feedback</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Grow your reach in the industry</li>
+          </ul>
+        </div>
+        <div class="choice-card" data-value="industry">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <h4>Industry Professional</h4>
+          <p>I work in automotive through an association, consulting, training, or another industry role.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Join industry conversations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Share your expertise</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Build your network</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Support a stronger industry</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-4 mt-32" style="border-top:1px solid var(--border);padding-top:24px;">
+        <div class="flex gap-8" style="align-items:flex-start;"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke-width="2" style="stroke:var(--text-700);flex-shrink:0;margin-top:2px;"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><div><strong style="font-size:13px;">For Industry Professionals Only</strong><p class="text-xs mt-0">The Dealer Row is a B2B network. Not for consumers.</p></div></div>
+        <div class="flex gap-8" style="align-items:flex-start;"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke-width="2" style="stroke:var(--text-700);flex-shrink:0;margin-top:2px;"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg><div><strong style="font-size:13px;">Your Privacy Matters</strong><p class="text-xs mt-0">You control what appears publicly on your profile.</p></div></div>
+        <div class="flex gap-8" style="align-items:flex-start;"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke-width="2" style="stroke:var(--text-700);flex-shrink:0;margin-top:2px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><div><strong style="font-size:13px;">Verified Accounts</strong><p class="text-xs mt-0">We verify all accounts to maintain a trusted community.</p></div></div>
+        <div class="flex gap-8" style="align-items:flex-start;"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke-width="2" style="stroke:var(--text-700);flex-shrink:0;margin-top:2px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><div><strong style="font-size:13px;">A Stronger Industry</strong><p class="text-xs mt-0">By joining, you help build a more connected industry.</p></div></div>
+      </div>
+
+      <div class="text-center mt-24">
+        <button class="btn btn-accent" id="toStep2Btn" style="min-width:220px;">Continue &rarr;</button>
+        <p class="text-sm mt-16">Already have an account? <a href="#" data-soon="Log In" style="color:var(--green-600);font-weight:700;">Log In</a></p>
+      </div>
+    </div>
+
+    <!-- STEP 2: Your Information + Privacy selection -->
+    <div class="step-panel" data-step-panel="2">
+      <div class="onboard-grid">
+        <div>
+          <div class="cicon" style="margin:0 0 14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 21v-6h6v6"></path></svg></div>
+          <h3>Dealership Professional</h3>
+          <p class="text-sm">I work for or own a dealership.</p>
+          <ul style="display:flex;flex-direction:column;gap:9px;margin:16px 0;border-top:1px solid var(--border);padding-top:16px;">
+            <li class="flex gap-8 text-sm" style="color:var(--text-700);"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke-width="3" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Access industry knowledge</li>
+            <li class="flex gap-8 text-sm" style="color:var(--text-700);"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke-width="3" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Find trusted service providers</li>
+            <li class="flex gap-8 text-sm" style="color:var(--text-700);"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke-width="3" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Connect with other dealers</li>
+            <li class="flex gap-8 text-sm" style="color:var(--text-700);"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke-width="3" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Build your professional network</li>
+          </ul>
+          <div class="info-note mt-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            <span><strong>Your privacy matters.</strong> Your employment information is used for verification. You control what appears publicly on your account settings.</span>
+          </div>
+          <div class="info-note" style="background:var(--green-50);">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="stroke:var(--green-600);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span><strong>Verified professionals</strong> help keep The Dealer Row safe, trusted, and valuable for everyone in the industry.</span>
+          </div>
+        </div>
+
+        <div>
+          <h3>Tell us about yourself</h3>
+          <p class="text-sm">This information helps us verify your industry connection.</p>
+          <div class="field mt-16">
+            <label>Full Name *</label>
+            <input class="input" id="fFullName" type="text" value="Cayela Smith">
+          </div>
+          <div class="field">
+            <label>Professional Email *</label>
+            <input class="input" id="fEmail" type="email" value="cayela@dealership.com">
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label>Job Role *</label>
+              <div class="select-wrap"><select class="input select" id="fRole">
+                <option>Collections Manager</option>
+                <option>Owner / Partner</option>
+                <option>General Manager</option>
+                <option>Finance Manager</option>
+                <option>Underwriting</option>
+                <option>Sales</option>
+                <option>Service</option>
+                <option>Titling</option>
+                <option>Accounting</option>
+                <option>Compliance</option>
+                <option>BDC</option>
+                <option>Marketing</option>
+                <option>Inventory</option>
+                <option>Other</option>
+              </select><span>&#9662;</span></div>
+            </div>
+            <div class="field">
+              <label>State *</label>
+              <div class="select-wrap"><select class="input select" id="fState">
+                <option>Texas</option>
+                <option>Nebraska</option>
+                <option>Oklahoma</option>
+                <option>Kansas</option>
+                <option>Colorado</option>
+                <option>Florida</option>
+                <option>Other</option>
+              </select><span>&#9662;</span></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Dealership Type *</label>
+            <div class="select-wrap"><select class="input select" id="fDealerType">
+              <option>Independent Dealer</option>
+              <option>Franchise Dealer</option>
+              <option>BHPH Dealer</option>
+              <option>Wholesale / Auction</option>
+            </select><span>&#9662;</span></div>
+          </div>
+          <div class="field">
+            <label>Dealership Name *</label>
+            <input class="input" id="fDealerName" type="text" value="The Auto Cave">
+            <div class="field-lock">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              This information is used for verification only and will not be shown on your public profile unless you choose to include it.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4>How should you appear publicly?</h4>
+          <p class="text-xs">Choose the option that works best for you. You can change this anytime in account settings.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;" id="privacyGroup">
+            <div class="privacy-option" data-value="full">
+              <div class="radio"></div>
+              <div><strong>Cayela Smith</strong><span class="sub">Collections Manager &middot; The Auto Cave &middot; Texas</span></div>
+            </div>
+            <div class="privacy-option" data-value="fulldealer">
+              <div class="radio"></div>
+              <div><strong>Cayela Smith</strong><span class="sub">Collections Manager &middot; Independent Dealer &middot; Texas</span></div>
+            </div>
+            <div class="privacy-option selected" data-value="initial">
+              <div class="radio"></div>
+              <div><strong>Cayela S. <span class="rec-pill">Recommended</span></strong><span class="sub">Collections Manager &middot; Independent Dealer &middot; Texas</span></div>
+            </div>
+          </div>
+
+          <div class="card card-pad mt-24" style="background:var(--bg);">
+            <h4 style="font-size:13px;">Profile Preview</h4>
+            <p class="text-xs mt-0">This is how you'll appear to other members:</p>
+            <div class="flex gap-12 items-center mt-8">
+              <div class="avatar lg" id="previewAvatar">CS</div>
+              <div>
+                <div style="font-weight:700;font-size:15px;display:flex;align-items:center;gap:5px;" id="previewName">Cayela S. <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke-width="3" style="stroke:var(--green-600);"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <div class="text-sm text-muted" id="previewRole">Collections Manager</div>
+                <div class="text-xs text-muted" id="previewSub">Independent Dealer &middot; Texas</div>
+                <span class="badge badge-verified mt-8" style="margin-top:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified Dealership Professional</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-32" style="border-top:1px solid var(--border);padding-top:24px;">
+        <button class="btn btn-accent" id="toStep3Btn" style="min-width:240px;">Continue to Verification &rarr;</button>
+        <p class="mt-16"><a href="#" id="backTo1" style="color:var(--green-600);font-weight:700;font-size:13.5px;">&larr; Back</a></p>
+      </div>
+    </div>
+
+    <!-- STEP 3: Verification (mock pending state) -->
+    <div class="step-panel" data-step-panel="3">
+      <div style="max-width:560px;margin:20px auto;text-align:center;">
+        <div class="verify-pending-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+        </div>
+        <span class="badge badge-pending" style="margin-bottom:10px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Pending Review</span>
+        <h2 style="margin-top:6px;">Verification Submitted</h2>
+        <p>Your information has been submitted for review. We'll let you know when your professional status has been verified or if we need additional information.</p>
+
+        <div class="card card-pad text-left mt-24" style="background:var(--bg);">
+          <h4 style="font-size:13px;">What you submitted &mdash; private, for verification only</h4>
+          <div class="table-wrap mt-8">
+            <table class="simple">
+              <tr><td class="text-muted" style="width:44%;">Full Name</td><td id="reviewName">&mdash;</td></tr>
+              <tr><td class="text-muted">Professional Email</td><td id="reviewEmail">&mdash;</td></tr>
+              <tr><td class="text-muted">Job Role</td><td id="reviewRole">&mdash;</td></tr>
+              <tr><td class="text-muted">State</td><td id="reviewState">&mdash;</td></tr>
+              <tr><td class="text-muted">Dealership Type</td><td id="reviewDealerType">&mdash;</td></tr>
+              <tr><td class="text-muted">Dealership Name</td><td id="reviewDealerName">&mdash;</td></tr>
+            </table>
+          </div>
+          <div class="info-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>This information is used for verification only and will not be shown on your public profile unless you choose to include it.</span>
+          </div>
+        </div>
+
+        <div class="card card-pad mt-16" style="border-color:var(--green-100);background:var(--green-50);">
+          <p class="text-sm mt-0" style="color:var(--text-700);"><strong>Prototype note:</strong> real verification happens on our admin side and isn't instant. For this demo, use the button below to simulate an approved review.</p>
+          <button class="btn btn-primary btn-block mt-8" id="simulateApprove">Simulate Approval &mdash; Demo Only &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: Get Started / Verified -->
+    <div class="step-panel" data-step-panel="4">
+      <div style="max-width:520px;margin:24px auto;text-align:center;">
+        <div class="success-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2>You're Verified!</h2>
+        <p>Welcome to The Dealer Row, <span id="welcomeFirstName">Cayela</span>. Your account is live and ready to use.</p>
+
+        <div class="card card-pad mt-24" style="text-align:left;">
+          <p class="text-xs mt-0" style="text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--text-500);">Your public profile</p>
+          <div class="flex gap-12 items-center mt-8">
+            <div class="avatar lg" id="finalAvatar">CS</div>
+            <div>
+              <div style="font-weight:700;font-size:16px;display:flex;align-items:center;gap:5px;" id="finalName">Cayela S. <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke-width="3" style="stroke:var(--green-600);"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+              <div class="text-sm text-muted" id="finalRole">Collections Manager</div>
+              <div class="text-xs text-muted" id="finalSub">Independent Dealer &middot; Texas</div>
+              <span class="badge badge-verified" style="margin-top:6px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified Dealership Professional</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="my-row.html" class="btn btn-accent btn-block mt-24" style="height:50px;font-size:15px;">Enter My Row &rarr;</a>
+        <a href="index.html" class="btn btn-ghost mt-8" style="color:var(--text-600);">Return to Homepage</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="mini-footer">
+  <div class="container">
+    <div class="footer-badges">
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Trusted Professionals</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>Real Conversations</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>Stronger Industry</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>Nationwide Connections</div>
+    </div>
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span></div>
+    </a>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  const PRIVACY_PRESETS = {
+    full: { name: "Cayela Smith", initials: "CS", sub: "The Auto Cave &middot; Texas" },
+    fulldealer: { name: "Cayela Smith", initials: "CS", sub: "Independent Dealer &middot; Texas" },
+    initial: { name: "Cayela S.", initials: "CS", sub: "Independent Dealer &middot; Texas" },
+  };
+  let selectedAccountType = "dealer";
+  let selectedPrivacy = "initial";
+
+  function updateStepper(n) {
+    document.querySelectorAll("[data-step-dot]").forEach((el) => {
+      const s = parseInt(el.dataset.stepDot, 10);
+      el.classList.remove("active", "done");
+      if (s < n) el.classList.add("done");
+      if (s === n) el.classList.add("active");
+    });
+  }
+  function goToStep(n) {
+    document.querySelectorAll("[data-step-panel]").forEach((p) => {
+      p.classList.toggle("active", parseInt(p.dataset.stepPanel, 10) === n);
+    });
+    updateStepper(n);
+    document.querySelector(".card.card-pad").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function refreshPreview() {
+    const preset = PRIVACY_PRESETS[selectedPrivacy];
+    const role = document.getElementById("fRole").value;
+    document.getElementById("previewName").innerHTML = preset.name + ' <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke-width="3" style="stroke:var(--green-600);"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    document.getElementById("previewRole").textContent = role;
+    document.getElementById("previewSub").innerHTML = preset.sub;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateStepper(1);
+
+    document.getElementById("accountTypeGroup").addEventListener("choiceChange", (e) => {
+      selectedAccountType = e.detail;
+    });
+
+    document.getElementById("toStep2Btn").addEventListener("click", () => {
+      if (selectedAccountType !== "dealer") {
+        const labels = { vendor: "Service Provider / Vendor", industry: "Industry Professional" };
+        drToast(`${labels[selectedAccountType]} onboarding is coming soon — try Dealership Professional for this demo.`);
+        return;
+      }
+      goToStep(2);
+    });
+
+    document.getElementById("backTo1").addEventListener("click", (e) => { e.preventDefault(); goToStep(1); });
+
+    document.querySelectorAll("#privacyGroup .privacy-option").forEach((opt) => {
+      opt.addEventListener("click", () => {
+        document.querySelectorAll("#privacyGroup .privacy-option").forEach((o) => o.classList.remove("selected"));
+        opt.classList.add("selected");
+        selectedPrivacy = opt.dataset.value;
+        refreshPreview();
+      });
+    });
+    ["fRole"].forEach((id) => document.getElementById(id).addEventListener("change", refreshPreview));
+
+    document.getElementById("toStep3Btn").addEventListener("click", () => {
+      document.getElementById("reviewName").textContent = document.getElementById("fFullName").value;
+      document.getElementById("reviewEmail").textContent = document.getElementById("fEmail").value;
+      document.getElementById("reviewRole").textContent = document.getElementById("fRole").value;
+      document.getElementById("reviewState").textContent = document.getElementById("fState").value;
+      document.getElementById("reviewDealerType").textContent = document.getElementById("fDealerType").value;
+      document.getElementById("reviewDealerName").textContent = document.getElementById("fDealerName").value;
+      goToStep(3);
+    });
+
+    document.getElementById("simulateApprove").addEventListener("click", () => {
+      const preset = PRIVACY_PRESETS[selectedPrivacy];
+      const role = document.getElementById("fRole").value;
+      const firstName = document.getElementById("fFullName").value.split(" ")[0] || "there";
+      document.getElementById("welcomeFirstName").textContent = firstName;
+      document.getElementById("finalName").innerHTML = preset.name + ' <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke-width="3" style="stroke:var(--green-600);"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      document.getElementById("finalRole").textContent = role;
+      document.getElementById("finalSub").innerHTML = preset.sub;
+      goToStep(4);
+    });
+  });
+</script>
+</body>
+</html>

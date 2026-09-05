@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find a Provider | The Dealer Row</title>
+<meta name="description" content="Search The Dealer Row's nationwide directory of dealer-recommended providers by service and location.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="find">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="find.html" data-page="find">Find <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+      <a href="ask-the-row.html" data-page="ask">Ask The Row</a>
+      <a href="#" data-page="communities">Communities <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+      <a href="#" data-page="resources">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+      <a href="#" data-page="about">About <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <a href="join.html" class="btn btn-outline btn-sm">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
+      <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-panel" data-mobile-nav>
+  <div class="container">
+    <a href="find.html">Find</a>
+    <a href="ask-the-row.html">Ask The Row</a>
+    <a href="#">Communities</a>
+    <a href="#">Resources</a>
+    <a href="#">About</a>
+    <div class="mnp-actions">
+      <a href="join.html" class="btn btn-outline-light btn-sm w-full">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm w-full">Join The Row</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container section-tight hero-inner">
+    <span class="eyebrow">Search Results</span>
+    <h1 style="color:#fff;font-size:32px;margin-top:8px;">Find trusted solutions in <span style="color:var(--green-400);">every market.</span></h1>
+    <p style="color:#cfe0d6;margin-bottom:22px;">Real recommendations. Real experience. Real people.</p>
+
+    <div class="search-box">
+      <div class="sb-field">
+        <label>What do you need?</label>
+        <div class="select-wrap">
+          <select class="input select" id="svcSelect">
+            <option>Repossession &amp; Recovery</option>
+            <option>Legal &amp; Compliance</option>
+            <option>Finance &amp; Collections</option>
+            <option>Dealer Technology</option>
+            <option>Titling &amp; Administration</option>
+          </select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="sb-field">
+        <label>Where do you need it?</label>
+        <input class="input" type="text" id="locInput" value="Omaha, Nebraska">
+      </div>
+      <div class="divider"></div>
+      <div class="sb-field" style="max-width:150px;">
+        <label>Radius</label>
+        <div class="select-wrap">
+          <select class="input select">
+            <option>100 miles</option>
+            <option>50 miles</option>
+            <option>250 miles</option>
+            <option>Any distance</option>
+          </select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="height:47px;" onclick="document.getElementById('resultsHeading').scrollIntoView({behavior:'smooth'});"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-top:30px;padding-bottom:70px;">
+  <div class="grid find-grid" style="align-items:flex-start;">
+
+    <!-- Filters -->
+    <aside class="card card-pad">
+      <div class="flex justify-between items-center">
+        <h3 style="margin:0;">Filters</h3>
+        <a href="#" class="text-sm" style="color:var(--green-600);font-weight:600;">Clear All</a>
+      </div>
+
+      <div style="margin-top:18px;">
+        <h4>Distance</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> 25 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> 50 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" checked style="accent-color:var(--green-600);"> 100 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> 250 miles</label>
+          <label class="flex items-center gap-8 text-sm"><input type="radio" name="dist" style="accent-color:var(--green-600);"> Any distance</label>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;">
+        <h4>Services</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" checked style="accent-color:var(--green-600);"> Repossession</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" checked style="accent-color:var(--green-600);"> Voluntary Surrender</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Transport</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Storage</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Lockout/Keys</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Skip Tracing</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Inspections</label>
+          <label class="flex items-center gap-8 text-sm"><input type="checkbox" style="accent-color:var(--green-600);"> Other</label>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;border-top:1px solid var(--border);padding-top:16px;">
+        <details open><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">Verified</summary></details>
+      </div>
+      <div style="margin-top:12px;">
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">Dealer Recommended</summary></details>
+      </div>
+      <div style="margin-top:12px;">
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">States Served</summary></details>
+      </div>
+      <div style="margin-top:12px;">
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14.5px;">Cities Served</summary></details>
+      </div>
+    </aside>
+
+    <!-- Results -->
+    <div>
+      <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:10px;">
+        <div>
+          <h2 id="resultsHeading" style="margin-bottom:2px;">Recovery &amp; Collateral near Omaha, NE</h2>
+          <p class="text-sm mt-0">12 providers serving this area</p>
+        </div>
+        <div class="select-wrap" style="width:190px;">
+          <select class="input select"><option>Recommended</option><option>Highest Rated</option><option>Most Recommendations</option><option>Closest</option></select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;" id="resultsList">
+
+        <div class="result-card">
+          <div class="result-logo">MIDWEST<br>RECOVERY</div>
+          <div class="result-meta">
+            <div class="result-title-row">
+              <h3><a href="provider.html">Midwest Recovery Group</a></h3>
+              <span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>
+            </div>
+            <div class="result-sub">
+              <span>&#11088; Recommended by 24 dealership professionals</span>
+            </div>
+            <div class="result-sub" style="margin-top:-4px;">
+              <span>&#128205; Omaha, NE &middot; Serves NE, IA (100-mile radius)</span>
+            </div>
+            <div class="result-tags">
+              <span class="chip">Repossession</span><span class="chip">Voluntary Surrender</span><span class="chip">Transport</span><span class="chip">Storage</span>
+            </div>
+          </div>
+          <div class="result-side">
+            <div class="pct">96%</div>
+            <div class="pctlbl">Would use again</div>
+            <a href="provider.html" class="btn btn-accent btn-sm w-full">View Profile &rarr;</a>
+            <button class="btn btn-outline btn-sm w-full mt-8">Save to My Row</button>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-logo">PLATINUM<br>RECOVERY</div>
+          <div class="result-meta">
+            <div class="result-title-row">
+              <h3><a href="provider.html">Platinum Recovery</a></h3>
+              <span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>
+            </div>
+            <div class="result-sub"><span>&#11088; Recommended by 18 dealership professionals</span></div>
+            <div class="result-sub" style="margin-top:-4px;"><span>&#128205; Lincoln, NE &middot; Serves NE, IA (150-mile radius)</span></div>
+            <div class="result-tags">
+              <span class="chip">Repossession</span><span class="chip">Transport</span><span class="chip">Lockout/Keys</span><span class="chip">Storage</span>
+            </div>
+          </div>
+          <div class="result-side">
+            <div class="pct">94%</div>
+            <div class="pctlbl">Would use again</div>
+            <a href="provider.html" class="btn btn-accent btn-sm w-full">View Profile &rarr;</a>
+            <button class="btn btn-outline btn-sm w-full mt-8">Save to My Row</button>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-logo">GREAT<br>PLAINS</div>
+          <div class="result-meta">
+            <div class="result-title-row">
+              <h3><a href="provider.html">Great Plains Recovery</a></h3>
+              <span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>
+            </div>
+            <div class="result-sub"><span>&#11088; Recommended by 11 dealership professionals</span></div>
+            <div class="result-sub" style="margin-top:-4px;"><span>&#128205; Fremont, NE &middot; Serves NE (100-mile radius)</span></div>
+            <div class="result-tags">
+              <span class="chip">Repossession</span><span class="chip">Voluntary Surrender</span><span class="chip">Transport</span><span class="chip">Inspections</span>
+            </div>
+          </div>
+          <div class="result-side">
+            <div class="pct">92%</div>
+            <div class="pctlbl">Would use again</div>
+            <a href="provider.html" class="btn btn-accent btn-sm w-full">View Profile &rarr;</a>
+            <button class="btn btn-outline btn-sm w-full mt-8">Save to My Row</button>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-logo">CAPITAL<br>ASSET</div>
+          <div class="result-meta">
+            <div class="result-title-row">
+              <h3><a href="provider.html">Capital Asset Recovery</a></h3>
+              <span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>
+            </div>
+            <div class="result-sub"><span>&#11088; Recommended by 9 dealership professionals</span></div>
+            <div class="result-sub" style="margin-top:-4px;"><span>&#128205; Council Bluffs, IA &middot; Serves NE, IA (100-mile radius)</span></div>
+            <div class="result-tags">
+              <span class="chip">Repossession</span><span class="chip">Transport</span><span class="chip">Storage</span><span class="chip">Skip Tracing</span>
+            </div>
+          </div>
+          <div class="result-side">
+            <div class="pct">90%</div>
+            <div class="pctlbl">Would use again</div>
+            <a href="provider.html" class="btn btn-accent btn-sm w-full">View Profile &rarr;</a>
+            <button class="btn btn-outline btn-sm w-full mt-8">Save to My Row</button>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-logo">STEADFAST</div>
+          <div class="result-meta">
+            <div class="result-title-row">
+              <h3><a href="provider.html">Steadfast Recovery</a></h3>
+              <span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Business Verified</span>
+            </div>
+            <div class="result-sub"><span>&#11088; Recommended by 7 dealership professionals</span></div>
+            <div class="result-sub" style="margin-top:-4px;"><span>&#128205; Omaha, NE &middot; Serves NE, IA, SD (200-mile radius)</span></div>
+            <div class="result-tags">
+              <span class="chip">Repossession</span><span class="chip">Voluntary Surrender</span><span class="chip">Transport</span><span class="chip">Storage</span>
+            </div>
+          </div>
+          <div class="result-side">
+            <div class="pct">88%</div>
+            <div class="pctlbl">Would use again</div>
+            <a href="provider.html" class="btn btn-accent btn-sm w-full">View Profile &rarr;</a>
+            <button class="btn btn-outline btn-sm w-full mt-8">Save to My Row</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex justify-between items-center mt-24" style="flex-wrap:wrap;gap:12px;">
+        <p class="text-sm mt-0">Showing 5 of 12 providers</p>
+        <div class="pagination">
+          <button>&lsaquo;</button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>&rsaquo;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right rail -->
+    <aside>
+      <div class="card" style="overflow:hidden;">
+        <div class="map-box">
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="220" fill="#dcefe3"/>
+            <circle cx="150" cy="110" r="70" fill="#bfe3cd" opacity=".8"/>
+            <circle cx="150" cy="110" r="6" fill="#0d3324"/>
+            <text x="160" y="108" font-size="10" fill="#33403a" font-family="Inter">Omaha</text>
+            <circle cx="105" cy="70" r="3.5" fill="#178a4c"/>
+            <text x="112" y="72" font-size="8.5" fill="#52605a" font-family="Inter">Sioux City</text>
+            <circle cx="70" cy="105" r="3.5" fill="#178a4c"/>
+            <text x="77" y="107" font-size="8.5" fill="#52605a" font-family="Inter">Norfolk</text>
+            <circle cx="185" cy="120" r="3.5" fill="#178a4c"/>
+            <text x="192" y="122" font-size="8.5" fill="#52605a" font-family="Inter">Council Bluffs</text>
+            <circle cx="140" cy="150" r="3.5" fill="#178a4c"/>
+            <text x="147" y="152" font-size="8.5" fill="#52605a" font-family="Inter">Lincoln</text>
+            <rect x="205" y="18" width="46" height="18" rx="9" fill="#0d3324"/>
+            <text x="212" y="30" font-size="9.5" fill="#fff" font-family="Inter" font-weight="700">100 mi</text>
+          </svg>
+        </div>
+        <div class="card-pad" style="padding-top:16px;">
+          <label style="font-size:12px;font-weight:700;">Refine by location</label>
+          <div class="flex gap-8 mt-8">
+            <input class="input" placeholder="Add a city or ZIP">
+            <button class="btn btn-outline btn-sm">&rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-pad mt-16" style="background:var(--forest-950);border:none;color:#fff;">
+        <div class="flex gap-8 items-center"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" width="20" height="20" style="stroke:var(--green-500);"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><strong>Can't find what you need?</strong></div>
+        <p style="color:#a9b8b0;font-size:13px;margin-top:8px;">Ask The Row and get recommendations from industry professionals who know this market.</p>
+        <a href="ask-the-row.html" class="btn btn-accent btn-sm w-full mt-8">Ask The Row &rarr;</a>
+      </div>
+
+      <div class="card card-pad mt-16">
+        <h4>Helpful Tips</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Use a larger radius to see more options</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Check verified status</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Read dealer recommendations</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);">Don't see the right provider? <a href="ask-the-row.html" style="color:var(--green-600);font-weight:700;">Ask The Row!</a></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-badges" style="padding-bottom:26px;">
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg> Real Connections</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Trusted Solutions</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg> A Stronger Industry</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Nationwide Together</div>
+    </div>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:12px;">
+          <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+          <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span></div>
+        </a>
+        <p style="font-size:13px;max-width:220px;">Where the automotive industry connects. Find. Ask. Recommend. Connect.</p>
+      </div>
+      <div>
+        <h4>For Dealers</h4>
+        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="ask-the-row.html">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
+      </div>
+      <div>
+        <h4>For Providers</h4>
+        <ul><li><a href="join.html">Claim Your Profile</a></li><li><a href="join.html">Join as a Provider</a></li><li><a href="#">Vendor Guidelines</a></li><li><a href="#">Get Recommended</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Community Guidelines</a></li><li><a href="#">Help Center</a></li><li><a href="#">Recommendation Policy</a></li><li><a href="find.html">Search Categories</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 The Dealer Row. All rights reserved.</span>
+      <span style="display:flex;gap:18px;"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Community Guidelines</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
