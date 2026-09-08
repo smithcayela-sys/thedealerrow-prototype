@@ -19,7 +19,7 @@
     </a>
     <nav class="main-nav">
       <a href="find.html" class="active" data-page="find">Find</a>
-      <a href="#" class="nav-soon" data-soon="Ask The Row" data-page="ask">Ask The Row<span class="soon-tag">Soon</span></a>
+      <a href="ask-the-row.html" data-page="ask">Ask The Row</a>
       <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
       <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
       <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
@@ -35,7 +35,7 @@
 <div class="mobile-nav-panel" data-mobile-nav>
   <div class="container">
     <a href="find.html">Find</a>
-    <a href="#" data-soon="Ask The Row">Ask The Row</a>
+    <a href="ask-the-row.html">Ask The Row</a>
     <a href="#" data-soon="Communities">Communities</a>
     <a href="#" data-soon="Resources">Resources</a>
     <a href="#" data-soon="About">About</a>
@@ -75,7 +75,7 @@
       </div>
       <div>
         <h4>For Dealers</h4>
-        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="#" data-soon="Ask The Row">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
+        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="ask-the-row.html">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
       </div>
       <div>
         <h4>For Providers</h4>
@@ -181,7 +181,7 @@
           <div class="card card-pad mt-16">
             <h4 style="margin-top:0;">Have a question first?</h4>
             <p class="text-xs">Ask The Row and get input from professionals who've worked with this provider.</p>
-            <button class="btn btn-outline btn-block" data-soon="Ask The Row">Ask About This Provider</button>
+            <a href="ask-question.html?service=${encodeURIComponent(p.category)}&location=${encodeURIComponent(p.city + ", " + p.state)}" class="btn btn-outline btn-block">Ask About This Provider</a>
           </div>
         </aside>
       </div>
