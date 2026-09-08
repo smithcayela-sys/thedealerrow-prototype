@@ -142,29 +142,71 @@ function drDealerReportedStates(p) {
   return seen;
 }
 
+/* Same location-matching approach as Find, applied to a question's own market/location text
+   (not a provider's service area) -- a straight substring match, plus state-name/abbreviation
+   normalization so "Nebraska" and "Grand Island, NE" resolve to the same state. */
+function drQuestionMatchesLocation(q, locationQuery) {
+  const query = (locationQuery || "").trim();
+  if (!query) return true;
+  const qLower = query.toLowerCase();
+  if ((q.location || "").toLowerCase().includes(qLower)) return true;
+  const resolvedQueryState = drResolveLocationState(query);
+  const resolvedQuestionState = drResolveLocationState(q.location || "");
+  return !!(resolvedQueryState && resolvedQuestionState && resolvedQueryState === resolvedQuestionState);
+}
+
+/* Public identity model for Ask The Row (questions + answers), preserved everywhere it renders:
+   First name + last initial, verification status, role, dealer type + state.
+   Never expose: employer/dealer name, email, phone, or verification documents.
+   Verified =/= Recommended -- verification and recommendation are always shown as separate facts. */
 const DR_QUESTIONS = [
-  { id: "recovery-grand-island", title: "Recovery recommendation needed near Grand Island, NE", topic: "Recovery & Collateral", location: "Nebraska", author: "Jason M.", role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", time: "2 hours ago", views: 324, answers: 7, recs: 3,
-    body: "Texas dealer here. We have a vehicle located near Grand Island and our normal recovery network doesn't cover the area. Has anyone personally used an agency there that you'd recommend?" },
-  { id: "florida-titling", title: "Title processing recommendations in Florida?", topic: "Titling & DMV", location: "Florida", author: "Kristen L.", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", time: "5 hours ago", views: 210, answers: 12, recs: 5,
+  { id: "recovery-grand-island", title: "Looking for a recovery company near Grand Island, Nebraska", topic: "Recovery & Collateral", location: "Grand Island, NE", author: "Cayela S.", initials: "CS", verified: true, role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", time: "2 hours ago", views: 324, answers: 3, recs: 2,
+    body: "Looking for a recovery company near Grand Island, Nebraska. Our normal recovery network doesn't cover the area. Has anyone personally worked with someone there they'd recommend?" },
+  { id: "florida-titling", title: "Title processing recommendations in Florida?", topic: "Titling & Administration", location: "Florida", author: "Kristen L.", initials: "KL", verified: true, role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", time: "5 hours ago", views: 210, answers: 2, recs: 0,
     body: "Looking for a reliable third-party titling company in Florida. We have some out-of-state deals and need someone we can trust. Any recommendations?" },
-  { id: "bankruptcy-attorney-houston", title: "Preferred bankruptcy attorney in Houston, TX", topic: "Legal & Compliance", location: "Texas", author: "Derek R.", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "8 hours ago", views: 188, answers: 9, recs: 4,
+  { id: "bankruptcy-attorney-houston", title: "Preferred bankruptcy attorney in Houston, TX", topic: "Legal & Compliance", location: "Texas", author: "Derek R.", initials: "DR", verified: true, role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "8 hours ago", views: 188, answers: 1, recs: 0,
     body: "We're seeing an increase in Chapter 7 and 13 filings and need a solid attorney who understands buy here pay here. Who do you use and why?" },
-  { id: "gps-tracking", title: "Best GPS tracking devices for collateral?", topic: "Dealer Technology", location: "Nationwide", author: "Melissa T.", role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "1 day ago", views: 402, answers: 15, recs: 6,
+  { id: "gps-tracking", title: "Best GPS tracking devices for collateral?", topic: "Dealer Technology", location: "Nationwide", author: "Melissa T.", initials: "MT", verified: true, role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "1 day ago", views: 402, answers: 1, recs: 0,
     body: "Looking for feedback on GPS devices. What are you using, what's working well, and what should we stay away from?" },
-  { id: "transport-tx-az", title: "Transport company for auction runs (TX to AZ)", topic: "Recovery & Collateral", location: "Texas", author: "Chris B.", role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", time: "1 day ago", views: 156, answers: 11, recs: 4,
+  { id: "transport-tx-az", title: "Transport company for auction runs (TX to AZ)", topic: "Vehicle Operations", location: "Texas", author: "Chris B.", initials: "CB", verified: true, role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", time: "1 day ago", views: 156, answers: 2, recs: 1,
     body: "Need a reliable transport company for 8–10 units heading to auction in Arizona. Who do you use and what has your experience been?" },
 ];
 
+/* Each answer's `provider` is either null (insight only, no recommendation attached) or
+   { providerId, firsthand }. providerId looks up the live, single source of truth in
+   DR_PROVIDERS -- the answer never carries its own copy of that provider's name/pct/etc,
+   so a mock answer can never drift out of sync with, or quietly inflate, real provider data.
+   firsthand distinguishes "I've personally worked with this provider" (true) from
+   "I'm aware they serve this area, but haven't personally used them" (false) -- either way,
+   linking a provider here never changes that provider's actual recs count or pct. */
 const DR_THREAD_ANSWERS = [
-  { name: "Kristen L.", initials: "KM", role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", time: "3 hours ago",
+  { questionId: "recovery-grand-island", name: "Kristen L.", initials: "KL", verified: true, role: "F&I Manager", dealer: "Franchise Dealer", state: "Colorado", time: "3 hours ago",
     body: "We've used Midwest Recovery several times for units in the Grand Island area. They're reliable, communicate well, and usually have quick turnaround times. No issues on our end.",
-    provider: { name: "Midwest Recovery Group", initials: "MRG", area: "Omaha, NE", servesText: "Serves NE, IA (including Grand Island)", pct: 96 }, helpful: 12 },
-  { name: "Derek R.", initials: "DR", role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "4 hours ago",
+    provider: { providerId: "midwest-recovery", firsthand: true }, helpful: 12 },
+  { questionId: "recovery-grand-island", name: "Derek R.", initials: "DR", verified: true, role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "4 hours ago",
     body: "Great Plains Recovery covers Grand Island and the surrounding areas. We've used them twice and had a good experience both times. Professional and kept us updated the whole time.",
-    provider: { name: "Great Plains Recovery", initials: "GPR", area: "Fremont, NE", servesText: "Serves NE (including Grand Island)", pct: 92 }, helpful: 8 },
-  { name: "Melissa T.", initials: "MT", role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "5 hours ago",
+    provider: { providerId: "great-plains-recovery", firsthand: true }, helpful: 8 },
+  { questionId: "recovery-grand-island", name: "Melissa T.", initials: "MT", verified: true, role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "5 hours ago",
     body: "Grand Island can be a little tricky depending on how far outside of town the unit is. I'd verify mileage before assigning. Some Omaha agencies charge extended coverage if it's outside their standard radius. We usually confirm upfront to avoid surprises.",
     provider: null, helpful: 6 },
+  { questionId: "florida-titling", name: "Chris B.", initials: "CB", verified: true, role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", time: "2 hours ago",
+    body: "Florida can be picky about odometer disclosure statements and lien releases when the deal originated out of state — make sure everything's notarized correctly before you submit or it'll bounce back. We build in an extra week for anything crossing state lines.",
+    provider: null, helpful: 9 },
+  { questionId: "florida-titling", name: "Melissa T.", initials: "MT", verified: true, role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "6 hours ago",
+    body: "We've had good luck just requesting a temp tag extension while the title clears — Florida's DMV backlog has been rough this year. It's been more about our own paperwork prep than any one provider.",
+    provider: null, helpful: 5 },
+  { questionId: "transport-tx-az", name: "Jason M.", initials: "JM", verified: true, role: "Collections Manager", dealer: "Independent Dealer", state: "Texas", time: "6 hours ago",
+    body: "We use Rapid Auto Transport for exactly this route a few times a month. Enclosed or open, they've been consistent and easy to schedule around auction timelines.",
+    provider: { providerId: "rapid-auto-transport", firsthand: true }, helpful: 10 },
+  { questionId: "transport-tx-az", name: "Derek R.", initials: "DR", verified: true, role: "General Manager", dealer: "Independent Dealer", state: "Kansas", time: "8 hours ago",
+    body: "For that route, budget an extra day in winter months — mountain passes between NM and AZ can delay open-carrier runs. We stagger pickup times so the driver isn't rushing the last leg.",
+    provider: null, helpful: 6 },
+  { questionId: "bankruptcy-attorney-houston", name: "Melissa T.", initials: "MT", verified: true, role: "Collections Manager", dealer: "BHPH Dealer", state: "Oklahoma", time: "7 hours ago",
+    body: "We went through this exact wave of BK filings last year — the biggest lesson was getting proof of claim paperwork filed fast after notice. Don't have a specific Houston attorney to point you to, but happy to share our internal checklist if it helps.",
+    provider: null, helpful: 4 },
+  { questionId: "gps-tracking", name: "Chris B.", initials: "CB", verified: true, role: "Inventory Manager", dealer: "Independent Dealer", state: "Texas", time: "20 hours ago",
+    body: "We tested a few and landed on ones with a hardwired backup battery — the plug-in only units die too easily if someone finds and unplugs them. Coverage reliability mattered more to us than app polish.",
+    provider: null, helpful: 7 },
 ];
 
 const DR_INVITATIONS = [
@@ -235,6 +277,93 @@ function drToggleSaved(id) {
 
 function drProviderById(id) {
   return DR_PROVIDERS.find((p) => p.id === id) || null;
+}
+
+/* ---------------- Ask The Row (client-side only, no backend) ----------------
+   New questions and answers submitted through the prototype forms live in this browser's
+   localStorage only, merged with the static mock data at render time -- same pattern as
+   Save to My Row. There is no login yet, so every locally-submitted question/answer posts
+   under one fixed demo identity rather than a real account. */
+const DR_LOCAL_QUESTIONS_KEY = "dr_local_questions";
+const DR_LOCAL_ANSWERS_KEY = "dr_local_answers";
+const DR_PROTOTYPE_IDENTITY = { name: "Cayela S.", initials: "CS", verified: true, role: "Collections Manager", dealer: "Independent Dealer", state: "Texas" };
+const DR_PII_NOTICE = "Do not include customer names, account numbers, or other personal customer information in your question or answer.";
+
+function drGetLocalQuestions() {
+  try {
+    const raw = localStorage.getItem(DR_LOCAL_QUESTIONS_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function drSaveLocalQuestions(arr) {
+  try { localStorage.setItem(DR_LOCAL_QUESTIONS_KEY, JSON.stringify(arr)); } catch (e) { /* storage unavailable — fail silently, demo-only */ }
+}
+
+function drAddLocalQuestion(q) {
+  const arr = drGetLocalQuestions();
+  arr.unshift(q);
+  drSaveLocalQuestions(arr);
+  return q;
+}
+
+function drGetLocalAnswers() {
+  try {
+    const raw = localStorage.getItem(DR_LOCAL_ANSWERS_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function drSaveLocalAnswers(arr) {
+  try { localStorage.setItem(DR_LOCAL_ANSWERS_KEY, JSON.stringify(arr)); } catch (e) { /* storage unavailable — fail silently, demo-only */ }
+}
+
+function drAddLocalAnswer(a) {
+  const arr = drGetLocalAnswers();
+  arr.push(a);
+  drSaveLocalAnswers(arr);
+  return a;
+}
+
+/* Static mock questions + anything asked locally in this browser, newest-first for local ones. */
+function drAllQuestions() {
+  return DR_QUESTIONS.concat(drGetLocalQuestions());
+}
+
+function drQuestionById(id) {
+  return drAllQuestions().find((q) => q.id === id) || null;
+}
+
+/* Static mock answers + anything answered locally in this browser, for one question. */
+function drAnswersForQuestion(id) {
+  const staticAnswers = DR_THREAD_ANSWERS.filter((a) => a.questionId === id);
+  const localAnswers = drGetLocalAnswers().filter((a) => a.questionId === id);
+  return staticAnswers.concat(localAnswers);
+}
+
+/* Only firsthand ("personally worked with") provider mentions count toward a question's
+   recommendation signal -- general awareness of a provider never counts as a recommendation. */
+function drFirsthandRecCountForQuestion(id) {
+  return drAnswersForQuestion(id).filter((a) => a.provider && a.provider.firsthand).length;
+}
+
+/* Shared public-identity markup for a question asker or answerer: first name + last initial,
+   verified badge, then role / dealer type / state -- never an employer name or contact info. */
+function drIdentityHtml(person) {
+  const verifiedBadge = person.verified
+    ? '<span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified</span>'
+    : "";
+  return `
+    <div class="flex items-center gap-8" style="flex-wrap:wrap;">
+      <strong>${person.name}</strong>${verifiedBadge}
+    </div>
+    <div class="text-xs text-muted mt-0">${person.role} &middot; ${person.dealer} &middot; ${person.state}</div>`;
 }
 
 /* Wires every [data-save-id] button on the page (Find results + Provider Profile).
