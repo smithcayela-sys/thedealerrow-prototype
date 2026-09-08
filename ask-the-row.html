@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask The Row | The Dealer Row</title>
+<meta name="description" content="Ask The Row — get firsthand answers and provider recommendations from verified dealership professionals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="ask">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="find.html" data-page="find">Find</a>
+      <a href="ask-the-row.html" class="active" data-page="ask">Ask The Row</a>
+      <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search" onclick="window.location.href='find.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <a href="join.html" class="btn btn-outline btn-sm">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
+      <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-panel" data-mobile-nav>
+  <div class="container">
+    <a href="find.html">Find</a>
+    <a href="ask-the-row.html">Ask The Row</a>
+    <a href="#" data-soon="Communities">Communities</a>
+    <a href="#" data-soon="Resources">Resources</a>
+    <a href="#" data-soon="About">About</a>
+    <div class="mnp-actions">
+      <a href="join.html" class="btn btn-outline-light btn-sm w-full">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm w-full">Join The Row</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container section-tight hero-inner">
+    <span class="eyebrow">Ask The Row</span>
+    <h1 style="color:#fff;font-size:32px;margin-top:8px;">Get answers from people who've <span style="color:var(--green-400);">actually been there.</span></h1>
+    <p style="color:#cfe0d6;margin-bottom:22px;">Post a question and hear back from verified dealership professionals — with firsthand provider recommendations when they have one.</p>
+
+    <div class="search-box">
+      <div class="sb-field">
+        <label>Category</label>
+        <div class="select-wrap">
+          <select class="input select" id="askSvcSelect">
+            <option value="">All Categories</option>
+            <option>Recovery &amp; Collateral</option>
+            <option>Legal &amp; Compliance</option>
+            <option>Finance &amp; Collections</option>
+            <option>Dealer Technology</option>
+            <option>Titling &amp; Administration</option>
+            <option>Vehicle Operations</option>
+          </select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="sb-field">
+        <label>Market or keyword</label>
+        <input class="input" type="text" id="askLocInput" placeholder="City, State, or a word from the question">
+      </div>
+      <button class="btn btn-primary" style="height:47px;" onclick="drRunAskSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-top:30px;padding-bottom:70px;">
+  <div class="grid find-grid" style="align-items:flex-start;">
+
+    <!-- Ask a Question -->
+    <aside class="card card-pad">
+      <h3 style="margin-top:0;">Need local insight?</h3>
+      <p class="text-sm" style="color:var(--text-600);">Ask The Row when a normal provider search doesn't cover your market. Verified professionals can share what they actually know — with or without a provider recommendation attached.</p>
+      <a href="ask-question.html" id="askQuestionCta" class="btn btn-accent btn-block mt-16">+ Ask a Question</a>
+
+      <div style="margin-top:22px;border-top:1px solid var(--border);padding-top:16px;">
+        <h4 style="margin-bottom:10px;">How it works</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Every asker and answerer is a Verified Dealership Professional</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>Provider recommendations are marked firsthand or aware-only</div>
+          <div class="flex gap-8 text-sm" style="color:var(--text-600);"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" width="15" height="15" style="stroke:var(--green-600);flex-shrink:0;margin-top:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>General industry knowledge is welcome on its own, too</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Feed -->
+    <div>
+      <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:10px;">
+        <div>
+          <h2 id="questionsHeading" style="margin-bottom:2px;">All questions</h2>
+          <p class="text-sm mt-0" id="questionsCountText">Showing all questions</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;" id="questionsList"></div>
+      <p class="text-sm text-muted" id="noQuestionsNote" style="display:none;margin-top:14px;">No questions currently match that search. Try a different category or market, clear a filter to see all questions, or be the first to <a href="ask-question.html" id="askQuestionFromNoResults" style="color:var(--green-600);font-weight:700;">ask about it</a>.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-badges" style="padding-bottom:26px;">
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg> Real Connections</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Trusted Solutions</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg> A Stronger Industry</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Nationwide Together</div>
+    </div>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:12px;">
+          <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+          <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span></div>
+        </a>
+        <p style="font-size:13px;max-width:220px;">Where the automotive industry connects. Find. Ask. Recommend. Connect.</p>
+      </div>
+      <div>
+        <h4>For Dealers</h4>
+        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="ask-the-row.html">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
+      </div>
+      <div>
+        <h4>For Providers</h4>
+        <ul><li><a href="join.html">Claim Your Profile</a></li><li><a href="join.html">Join as a Provider</a></li><li><a href="#">Vendor Guidelines</a></li><li><a href="#">Get Recommended</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Community Guidelines</a></li><li><a href="#">Help Center</a></li><li><a href="#">Recommendation Policy</a></li><li><a href="find.html">Search Categories</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 The Dealer Row. All rights reserved.</span>
+      <span style="display:flex;gap:18px;"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Community Guidelines</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  function drRenderQuestionCard(q) {
+    const card = document.createElement("div");
+    card.className = "result-card";
+    const answerCount = drAnswersForQuestion(q.id).length;
+    card.innerHTML = `
+      <div class="result-logo">${q.initials}</div>
+      <div class="result-meta">
+        <div class="result-title-row">
+          <h3><a href="question-thread.html?id=${q.id}">${q.title}</a></h3>
+          ${q.verified ? '<span class="badge badge-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified</span>' : ""}
+        </div>
+        <div class="result-sub"><span>${q.name || q.author} &middot; ${q.role} &middot; ${q.dealer} &middot; ${q.state}</span></div>
+        <div class="result-sub" style="margin-top:-4px;"><span>&#128205; ${q.location} &middot; ${q.time}</span></div>
+        <div class="result-tags"><span class="chip">${q.topic}</span></div>
+      </div>
+      <div class="result-side">
+        <div class="pct">${answerCount}</div>
+        <div class="pctlbl">${answerCount === 1 ? "Answer" : "Answers"}</div>
+        <a href="question-thread.html?id=${q.id}" class="btn btn-accent btn-sm w-full">View Thread &rarr;</a>
+      </div>`;
+    return card;
+  }
+
+  function drRenderAskResults(service, location) {
+    const list = document.getElementById("questionsList");
+    const heading = document.getElementById("questionsHeading");
+    const countText = document.getElementById("questionsCountText");
+    const noQuestionsNote = document.getElementById("noQuestionsNote");
+    if (!list) return;
+
+    const filtered = drAllQuestions().filter((q) => {
+      const svcMatch = !service || q.topic === service;
+      const locMatch = drQuestionMatchesLocation(q, location);
+      return svcMatch && locMatch;
+    });
+
+    // Local (asked-in-this-browser) questions are appended in drAllQuestions(), so bring the
+    // newest ones to the top of the feed regardless of source.
+    filtered.sort((a, b) => (a.id.startsWith("local-") === b.id.startsWith("local-")) ? 0 : (a.id.startsWith("local-") ? -1 : 1));
+
+    list.innerHTML = "";
+    filtered.forEach((q) => list.appendChild(drRenderQuestionCard(q)));
+
+    let headingText;
+    if (!service && !location) {
+      headingText = "All questions";
+    } else if (service && location) {
+      headingText = `${service} near ${location}`;
+    } else if (service) {
+      headingText = service;
+    } else {
+      headingText = `All questions near ${location}`;
+    }
+    if (heading) heading.textContent = headingText;
+
+    // Carry the current search into "Ask a Question" so the loop closes naturally.
+    const askParams = new URLSearchParams();
+    if (service) askParams.set("service", service);
+    if (location) askParams.set("location", location);
+    const askHref = "ask-question.html" + (askParams.toString() ? "?" + askParams.toString() : "");
+    ["askQuestionCta", "askQuestionFromNoResults"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.href = askHref;
+    });
+
+    if (filtered.length === 0) {
+      if (countText) countText.textContent = "No questions currently match this search";
+      if (noQuestionsNote) noQuestionsNote.style.display = "";
+    } else {
+      if (countText) countText.textContent = `Showing ${filtered.length} question${filtered.length === 1 ? "" : "s"}${location ? " for this market" : ""}`;
+      if (noQuestionsNote) noQuestionsNote.style.display = "none";
+    }
+  }
+
+  function drRunAskSearch() {
+    const service = document.getElementById("askSvcSelect").value;
+    const location = document.getElementById("askLocInput").value;
+    const params = new URLSearchParams();
+    if (service) params.set("service", service);
+    if (location) params.set("location", location);
+    history.replaceState(null, "", "ask-the-row.html" + (params.toString() ? "?" + params.toString() : ""));
+    drRenderAskResults(service, location);
+    document.getElementById("questionsHeading").scrollIntoView({ behavior: "smooth" });
+  }
+
+  // On load: read ?service= and ?location= from the URL (arriving from Find's no-results state,
+  // a provider profile's "Ask About This Provider," or a direct link).
+  (function drInitAskFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service") || "";
+    const location = params.get("location") || "";
+    if (service) document.getElementById("askSvcSelect").value = service;
+    if (location) document.getElementById("askLocInput").value = location;
+    drRenderAskResults(service, location);
+  })();
+</script>
+</body>
+</html>
