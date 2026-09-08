@@ -144,6 +144,15 @@ input, select, textarea {
 .quote-card p { font-size: 14px; color: var(--text-700); margin: 0 0 10px; font-style: italic; }
 .quote-card .quote-author { font-size: 12.5px; color: var(--text-500); font-weight: 600; }
 
+/* Provider recommendation embedded inside an Ask The Row answer -- distinct from the
+   answer's own text, so a linked provider always reads as a separate, sourced fact. */
+.provider-rec {
+  display: flex; gap: 12px; align-items: flex-start;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 14px 16px; margin-top: 14px; background: var(--bg);
+}
+.provider-rec .btn { white-space: nowrap; }
+
 /* ---------------------------------- Header ---------------------------------- */
 .site-header {
   position: sticky; top: 0; z-index: 100;
