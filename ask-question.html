@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask a Question | The Dealer Row</title>
+<meta name="description" content="Ask The Row a question and get firsthand answers from verified dealership professionals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="ask">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+      <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span><span class="l3">WHERE THE AUTOMOTIVE INDUSTRY CONNECTS.</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="find.html" data-page="find">Find</a>
+      <a href="ask-the-row.html" class="active" data-page="ask">Ask The Row</a>
+      <a href="#" class="nav-soon" data-soon="Communities" data-page="communities">Communities<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="Resources" data-page="resources">Resources<span class="soon-tag">Soon</span></a>
+      <a href="#" class="nav-soon" data-soon="About" data-page="about">About<span class="soon-tag">Soon</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search" onclick="window.location.href='find.html'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <a href="join.html" class="btn btn-outline btn-sm">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm">Join The Row</a>
+      <button class="hamburger" data-menu-toggle aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-panel" data-mobile-nav>
+  <div class="container">
+    <a href="find.html">Find</a>
+    <a href="ask-the-row.html">Ask The Row</a>
+    <a href="#" data-soon="Communities">Communities</a>
+    <a href="#" data-soon="Resources">Resources</a>
+    <a href="#" data-soon="About">About</a>
+    <div class="mnp-actions">
+      <a href="join.html" class="btn btn-outline-light btn-sm w-full">Log In</a>
+      <a href="join.html" class="btn btn-accent btn-sm w-full">Join The Row</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-top:26px;padding-bottom:70px;max-width:680px;">
+  <a href="ask-the-row.html" class="text-sm" style="color:var(--green-600);font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    Back to Ask The Row
+  </a>
+
+  <div class="card card-pad mt-16">
+    <h1 style="font-size:24px;margin-top:0;">Ask The Row</h1>
+    <p class="text-sm" style="color:var(--text-600);margin-bottom:22px;">Posting as <strong>Cayela S.</strong> &middot; Collections Manager &middot; Independent Dealer &middot; Texas</p>
+
+    <div class="field">
+      <label>Question title</label>
+      <input class="input" type="text" id="qTitle" placeholder="e.g. Looking for a recovery company near Grand Island, Nebraska">
+    </div>
+
+    <div class="row-2">
+      <div class="field">
+        <label>Category</label>
+        <div class="select-wrap">
+          <select class="input select" id="qCategory">
+            <option value="">Select a category</option>
+            <option>Recovery &amp; Collateral</option>
+            <option>Legal &amp; Compliance</option>
+            <option>Finance &amp; Collections</option>
+            <option>Dealer Technology</option>
+            <option>Titling &amp; Administration</option>
+            <option>Vehicle Operations</option>
+          </select>
+          <span style="color:var(--text-500);">&#9662;</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>City/State or market <span class="opt">(optional)</span></label>
+        <input class="input" type="text" id="qLocation" placeholder="e.g. Grand Island, NE">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Details</label>
+      <textarea class="input" id="qBody" rows="5" placeholder="Describe what you're looking for and any context that would help another professional answer..."></textarea>
+    </div>
+
+    <div class="checkbox-row" style="margin-bottom:18px;">
+      <div class="box" style="width:100%;">
+        <strong style="font-size:13px;">Before you post:</strong>
+        <p class="text-xs" style="margin:4px 0 0;color:var(--text-600);" id="piiNotice"></p>
+      </div>
+    </div>
+
+    <p class="text-xs text-muted" id="qFormError" style="display:none;color:var(--red-500);"></p>
+    <button class="btn btn-primary btn-block" onclick="drSubmitQuestion()">Post Question</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-badges" style="padding-bottom:26px;">
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg> Real Connections</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Trusted Solutions</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg> A Stronger Industry</div>
+      <div class="fb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Nationwide Together</div>
+    </div>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:12px;">
+          <svg class="logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="10" fill="#0d3324"/><path d="M9 30c0-8 4-10 8-16 2-3 4-5 8-6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 30c0-6 3-8 6-13" stroke="#1ea55c" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="7.2" r="2.3" fill="#1ea55c"/></svg>
+          <div class="logo-text"><span class="l1">THE</span><span class="l2">DEALER<span>ROW</span></span></div>
+        </a>
+        <p style="font-size:13px;max-width:220px;">Where the automotive industry connects. Find. Ask. Recommend. Connect.</p>
+      </div>
+      <div>
+        <h4>For Dealers</h4>
+        <ul><li><a href="find.html">Find a Provider</a></li><li><a href="ask-the-row.html">Ask The Row</a></li><li><a href="my-row.html">My Row</a></li><li><a href="join.html">Join The Row</a></li></ul>
+      </div>
+      <div>
+        <h4>For Providers</h4>
+        <ul><li><a href="join.html">Claim Your Profile</a></li><li><a href="join.html">Join as a Provider</a></li><li><a href="#">Vendor Guidelines</a></li><li><a href="#">Get Recommended</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#">Community Guidelines</a></li><li><a href="#">Help Center</a></li><li><a href="#">Recommendation Policy</a></li><li><a href="find.html">Search Categories</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 The Dealer Row. All rights reserved.</span>
+      <span style="display:flex;gap:18px;"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Community Guidelines</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.getElementById("piiNotice").textContent = DR_PII_NOTICE;
+
+  function drSubmitQuestion() {
+    const title = document.getElementById("qTitle").value.trim();
+    const category = document.getElementById("qCategory").value;
+    const location = document.getElementById("qLocation").value.trim();
+    const body = document.getElementById("qBody").value.trim();
+    const errorEl = document.getElementById("qFormError");
+
+    if (!title || !category || !body) {
+      errorEl.textContent = "Please fill in a title, category, and details before posting.";
+      errorEl.style.display = "";
+      return;
+    }
+    errorEl.style.display = "none";
+
+    const id = "local-q-" + Date.now();
+    const question = Object.assign({}, DR_PROTOTYPE_IDENTITY, {
+      id: id,
+      title: title,
+      topic: category,
+      location: location || "Not specified",
+      time: "Just now",
+      views: 0,
+    });
+    // `author` mirrors the shared identity's name field, matching the shape existing question cards expect.
+    question.author = DR_PROTOTYPE_IDENTITY.name;
+    question.body = body;
+
+    drAddLocalQuestion(question);
+    window.location.href = "question-thread.html?id=" + encodeURIComponent(id);
+  }
+
+  // Prefill from a Find no-result state, a provider profile, or an Ask The Row search.
+  (function drInitAskQuestionFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service") || "";
+    const location = params.get("location") || "";
+    if (service) document.getElementById("qCategory").value = service;
+    if (location) document.getElementById("qLocation").value = location;
+  })();
+</script>
+</body>
+</html>
